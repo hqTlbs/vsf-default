@@ -20,16 +20,12 @@
       </div>
     </section>
 
-    <section v-if="isOnline" class="container pb60 px15">
-      <div class="row center-xs">
-        <header class="col-md-12" :class="{ pt40: getEverythingNewCollection && getEverythingNewCollection.length }">
-          <h2 class="align-center cl-accent">
-            {{ $t('Get inspired') }}
-          </h2>
-        </header>
-      </div>
-      <tile-links />
-    </section>
+    <lazy-hydrate when-idle>
+      <section class="py20 new-collection container px15">
+        <my-recently-viewed />
+      </section>
+    </lazy-hydrate>
+
     <Onboard />
   </div>
 </template>
@@ -51,6 +47,7 @@ import { mapGetters } from 'vuex'
 import config from 'config'
 import { registerModule } from '@vue-storefront/core/lib/modules'
 import { RecentlyViewedModule } from '@vue-storefront/core/modules/recently-viewed'
+import MyRecentlyViewed from '../components/core/blocks/MyAccount/MyRecentlyViewed'
 
 export default {
   data () {
@@ -63,7 +60,7 @@ export default {
     Onboard,
     ProductListing,
     PromotedOffers,
-    TileLinks,
+    MyRecentlyViewed,
     LazyHydrate
   },
   computed: {

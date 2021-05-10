@@ -3,7 +3,7 @@
     <div class="between-md" v-for="(productLink, index) in products" :key="index">
       <div class="py10" v-if="productLink.product">
         <div class="row middle-xs h4 mb10">
-          <p class="col-xs-7 serif m0">
+          <p class="col-xs-7 sans-serif m0">
             {{ productLink.product.name | htmlDecode }}
           </p>
           <div class="col-xs-4 cl-bg-tertiary">

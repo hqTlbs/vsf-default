@@ -51,7 +51,7 @@
     <ul v-if="productsInCart.length" class="bg-cl-primary m0 px40 pb40 products">
       <product v-for="product in productsInCart" :key="product.server_item_id || product.id" :product="product" />
     </ul>
-    <div v-if="productsInCart.length" class="summary px40 cl-accent serif">
+    <div v-if="productsInCart.length" class="summary px40 cl-accent sans-serif">
       <h3 class="m0 pt40 mb30 weight-400 summary-heading">
         {{ $t('Shopping summary') }}
       </h3>
@@ -71,7 +71,7 @@
       <div class="row py20">
         <div v-if="OnlineOnly && !addCouponPressed" class="col-xs-12">
           <button
-            class="p0 brdr-none serif fs-medium-small cl-accent bg-cl-transparent"
+            class="p0 brdr-none sans-serif fs-medium-small cl-accent bg-cl-transparent"
             type="button"
             @click="addDiscountCoupon"
           >

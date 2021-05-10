@@ -1,53 +1,31 @@
 <template>
-  <div class="product align-center w-100 mb20 brdr-1 brdr-cl-bg-accent" v-observe-visibility="visibilityChanged">
-    <div class="product__icons">
-      <AddToWishlist :product="product">
-        <div
-          class="product__icon"
-          :class="{'product__icon--active': isOnWishlist }"
-          :title="isOnWishlist ? $t('Remove') : $t('Add to favorite') "
-        >
-          <i class="material-icons">{{ favoriteIcon }}</i>
-        </div>
-      </AddToWishlist>
-      <AddToCompare :product="product">
-        <div
-          class="product__icon"
-          :class="{'product__icon--active':isOnCompare } "
-          :title="isOnCompare ? $t('Remove from compare') : $t('Add to compare')"
-        >
-          <i class="material-icons">compare</i>
-        </div>
-      </AddToCompare>
+  <div class="row top-xs w-100 brdr-1 brdr-cl-primary p15 mb15">
+    <div class="col-sm-2 col-md-2">
+      {{ product.id }}
     </div>
-    <router-link
-      class="block no-underline product-link"
-      :to="productLink"
-      data-testid="productLink"
-    >
-      <div
-        class="product-cover bg-cl-secondary brdr-bottom-1 brdr-cl-primary"
-        :class="[{ sale: labelsActive && isOnSale }, { new: labelsActive && isNew }]"
-      >
-        <product-image
-          class="product-cover__thumb"
-          :image="thumbnailObj"
-          :alt="product.name | htmlDecode"
-          :calc-ratio="false"
-          data-testid="productImage"
-        />
-      </div>
-
-      <p class="mb0 cl-accent mt10" style="font-size: 15px;" v-if="!onlyImage">
-        {{ product.name | htmlDecode }}
+    <div class="col-sm-2 col-md-2">
+      {{ product.sku | htmlDecode }}
+    </div>
+    <div class="col-sm-6 col-md-6">
+      <p class="mb0 cl-accent mt0" style="font-size: 15px;" v-if="!onlyImage">
+        <router-link
+          class="block no-underline product-link"
+          :to="productLink"
+          data-testid="productLink"
+        >
+        {{ product.manufacturer_name | htmlDecode }} {{ product.name | htmlDecode }}
+      </router-link>
       </p>
-
+      <p class="mb0 cl-secondary mt0" style="font-size: 13px;" v-if="!onlyImage">
+        {{ product.series_1_value1 | htmlDecode }} # {{ product.series_2_value1 | htmlDecode }}<br>{{ product.series_3_value1 | htmlDecode }} [{{ product.series_3_value2 | htmlDecode }}]
+      </p>
+    </div>
+    <div class="col-sm-2 col-md-2">
       <span
         class="price-original mr5 lh30 cl-secondary"
         style="font-size: 15px;"
         v-if="product.special_price && parseFloat(product.original_price_incl_tax) > 0 && !onlyImage"
       >{{ product.original_price_incl_tax | price(storeView) }}</span>
-
       <span
         class="price-special lh30 cl-accent weight-700"
         style="font-size: 15px;"
@@ -59,20 +37,7 @@
         style="font-size: 15px;"
         v-if="!product.special_price && parseFloat(product.price_incl_tax) > 0 && !onlyImage"
       >{{ product.price_incl_tax | price(storeView) }}</span>
-
-      <p class="mb0 cl-secondary mt10" style="font-size: 14px;" v-if="!onlyImage">
-        {{ product.manufacturer_name | htmlDecode }}
-      </p>
-      <p class="mb0 cl-secondary mt10" style="font-size: 13px;" v-if="!onlyImage">
-        {{ product.id }}
-      </p>
-      <p class="mb0 cl-secondary mt10" style="font-size: 13px;" v-if="!onlyImage">
-        {{ product.sku | htmlDecode }}
-      </p>
-      <p class="mb0 cl-secondary mt10" style="font-size: 13px;" v-if="!onlyImage">
-        {{ product.series_1_value1 | htmlDecode }} # {{ product.series_2_value1 | htmlDecode }}<br>{{ product.series_3_value1 | htmlDecode }} [{{ product.series_3_value2 | htmlDecode }}]
-      </p>
-    </router-link>
+    </div>
   </div>
 </template>
 

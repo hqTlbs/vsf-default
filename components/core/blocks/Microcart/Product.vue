@@ -20,7 +20,7 @@
         <div class="flex w-100 flex-wrap between-xs">
           <div>
             <router-link
-              class="serif h4 name"
+              class="sans-serif h4 name"
               :to="productLink"
               data-testid="productLink"
               @click.native="$store.commit('ui/setMicrocart', false)"
@@ -61,29 +61,29 @@
         </div>
         <div class="flex mr10 align-right start-xs between-sm prices">
           <div class="prices" v-if="!displayItemDiscounts || !isOnline">
-            <span class="h4 serif cl-error price-special" v-if="product.special_price">
+            <span class="h4 sans-serif cl-error price-special" v-if="product.special_price">
               {{ product.price_incl_tax * product.qty | price(storeView) }}
             </span>
-            <span class="h6 serif price-original" v-if="product.special_price">
+            <span class="h6 sans-serif price-original" v-if="product.special_price">
               {{ product.original_price_incl_tax * product.qty | price(storeView) }}
             </span>
-            <span class="h4 serif price-regular" v-else data-testid="productPrice">
+            <span class="h4 sans-serif price-regular" v-else data-testid="productPrice">
               {{ (product.original_price_incl_tax ? product.original_price_incl_tax : product.price_incl_tax) * product.qty | price(storeView) }}
             </span>
           </div>
           <div class="prices" v-else-if="isOnline && product.totals">
-            <span class="h4 serif cl-error price-special" v-if="product.totals.discount_amount">
+            <span class="h4 sans-serif cl-error price-special" v-if="product.totals.discount_amount">
               {{ product.totals.row_total - product.totals.discount_amount + product.totals.tax_amount | price(storeView) }}
             </span>
-            <span class="h6 serif price-original" v-if="product.totals.discount_amount">
+            <span class="h6 sans-serif price-original" v-if="product.totals.discount_amount">
               {{ product.totals.row_total_incl_tax | price(storeView) }}
             </span>
-            <span class="h4 serif price-regular" v-if="!product.totals.discount_amount">
+            <span class="h4 sans-serif price-regular" v-if="!product.totals.discount_amount">
               {{ product.totals.row_total_incl_tax | price(storeView) }}
             </span>
           </div>
           <div class="prices" v-else>
-            <span class="h4 serif price-regular">
+            <span class="h4 sans-serif price-regular">
               {{ (product.regular_price || product.price_incl_tax) * product.qty | price(storeView) }}
             </span>
           </div>

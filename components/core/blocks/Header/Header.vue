@@ -6,7 +6,7 @@
     >
       <div class="container px15">
         <div class="row between-xs middle-xs" v-if="!isCheckoutPage || isThankYouPage">
-          <div class="col-md-4 col-xs-2 middle-xs">
+          <div class="col-md-1 col-xs-1 middle-xs">
             <div>
               <hamburger-icon class="p15 icon bg-cl-secondary pointer" />
             </div>
@@ -14,7 +14,7 @@
           <div class="col-xs-2 visible-xs">
             <search-icon class="p15 icon pointer" />
           </div>
-          <div class="col-md-4 col-xs-4 center-xs pt5">
+          <div class="col-md-7 col-xs-7 left pt5">
             <div>
               <logo width="auto" height="41px" />
             </div>
@@ -59,13 +59,47 @@
           </div>
         </div>
       </div>
+      <div class="container w-100 brdr-1 bg-cl-primary brdr-cl-secondary">
+        <div class="container px15 py10">
+          <div class="row between-xs middle-xs" v-if="!isCheckoutPage || isThankYouPage">
+            <div class="col-md-12 col-xs-2 middle-xs">
+              <ul class="uppercase tracking-wide font-bold w-full flex flex-grow lg:flex lg:flex-initial lg:w-auto items-center mt-8 lg:mt-0">
+                <li
+                  class="brdr-bottom-1 brdr-cl-bg-secondary bg-cl-primary flex px10"
+                  :key="category.slug"
+                  v-for="category in mainCategories()"
+                >
+                  <mega-menu
+                    :category="category"
+                    :categories="getCategories"
+                    :subCategories="subCategories(category.id)"
+                  >
+                  </mega-menu>
+<!--                  <div>-->
+<!--                    {{ category.id }} - {{ category.level }} - {{ category.name }} - {{ category.parent_id }}-->
+<!--                    <li-->
+<!--                      class="brdr-bottom-1 brdr-cl-bg-secondary bg-cl-primary flex"-->
+<!--                      :key="subCategory.slug"-->
+<!--                      v-for="subCategory in subCategories(category.id)"-->
+<!--                    >-->
+<!--                      <div>-->
+<!--                        {{ subCategory.id }} - {{ subCategory.level }} - {{ subCategory.name }} - {{ subCategory.parent_id }}-->
+<!--                      </div>-->
+<!--                    </li>-->
+<!--                  </div>-->
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </header>
     <div class="header-placeholder" />
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import {mapGetters, mapState} from 'vuex'
 import CurrentPage from 'theme/mixins/currentPage'
 import AccountIcon from 'theme/components/core/blocks/Header/AccountIcon'
 import CompareIcon from 'theme/components/core/blocks/Header/CompareIcon'
@@ -74,6 +108,8 @@ import Logo from 'theme/components/core/Logo'
 import MicrocartIcon from 'theme/components/core/blocks/Header/MicrocartIcon'
 import SearchIcon from 'theme/components/core/blocks/Header/SearchIcon'
 import WishlistIcon from 'theme/components/core/blocks/Header/WishlistIcon'
+import MegaMenu from 'theme/components/core/blocks/Header/MegaMenu'
+import config from "config";
 
 export default {
   name: 'Header',
@@ -84,7 +120,8 @@ export default {
     Logo,
     MicrocartIcon,
     SearchIcon,
-    WishlistIcon
+    WishlistIcon,
+    MegaMenu
   },
   mixins: [CurrentPage],
   data () {
@@ -93,7 +130,8 @@ export default {
       isScrolling: false,
       scrollTop: 0,
       lastScrollTop: 0,
-      navbarHeight: 54
+      navbarHeight: 54,
+      isVisible: false
     }
   },
   computed: {
@@ -105,6 +143,12 @@ export default {
       return this.$store.state.checkout.isThankYouPage
         ? this.$store.state.checkout.isThankYouPage
         : false
+    },
+    ...mapGetters('category-next', ['getMenuCategories']),
+    getCategories () {
+      // console.log('getCategories')
+      // console.log(this.getMenuCategories)
+      return this.getMenuCategories
     }
   },
   beforeMount () {
@@ -124,6 +168,19 @@ export default {
     }, 250)
   },
   methods: {
+    mainCategories () {
+      // console.log('mainCategories')
+      return this.getCategories.filter((op) => {
+        return op.level === 2
+      })
+    },
+    subCategories (parentId) {
+      // console.log('subCategories')
+      // console.log(parentId)
+      return this.getCategories.filter((op) => {
+        return op.level === 3 && op.parent_id === parentId
+      })
+    },
     gotoAccount () {
       this.$bus.$emit('modal-toggle', 'modal-signup')
     },
@@ -138,6 +195,13 @@ export default {
         this.navVisible = true
       }
       this.lastScrollTop = this.scrollTop
+    },
+    showMenu() {
+      this.isVisible = true
+    },
+    hideMenu() {
+      this.isVisible = false
+      this.focusedIndex = 0
     }
   }
 }

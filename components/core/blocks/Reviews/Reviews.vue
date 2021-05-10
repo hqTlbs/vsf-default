@@ -3,7 +3,7 @@
     <section class="container px15 pb50 cl-primary">
       <div class="row between-xs">
         <div class="col-xs-12 col-md-6 pt50">
-          <h2 class="h3 m0 mb10 serif lh20 weight-700">
+          <h2 class="h3 m0 mb10 sans-serif lh20 weight-700">
             {{ $t('Reviews') }}
           </h2>
           <reviews-list
@@ -14,7 +14,7 @@
           />
         </div>
         <div class="col-xs-12 col-md-5 pt50">
-          <h2 class="h3 m0 mb10 serif lh20 weight-700">
+          <h2 class="h3 m0 mb10 sans-serif lh20 weight-700">
             {{ $t('Add review') }}
           </h2>
           <form action="#" @submit.prevent="outOfScope()">

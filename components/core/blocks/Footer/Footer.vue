@@ -43,11 +43,6 @@
                 </router-link>
               </div>
               <div class="mt15">
-                <router-link class="cl-secondary" :to="localizedRoute('/size-guide')" exact>
-                  {{ $t('Size guide') }}
-                </router-link>
-              </div>
-              <div class="mt15">
                 <router-link class="cl-secondary" :to="localizedRoute('/contact')" exact>
                   {{ $t('Contact us') }}
                 </router-link>
@@ -65,11 +60,6 @@
               <div class="mt15">
                 <router-link class="cl-secondary" :to="getLinkFor('/customer-service')" exact>
                   {{ $t('Customer service (Magento CMS)') }}
-                </router-link>
-              </div>
-              <div class="mt15">
-                <router-link class="cl-secondary" :to="localizedRoute('/store-locator')" exact>
-                  {{ $t('Store locator') }}
                 </router-link>
               </div>
             </div>

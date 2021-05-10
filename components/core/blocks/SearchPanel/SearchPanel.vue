@@ -25,6 +25,7 @@
               id="search"
               v-model="search"
               @input="makeSearch"
+              @keyup.enter="onSearchEnter"
               @blur="$v.search.$touch()"
               class="search-panel-input"
               :placeholder="$t('Type what you are looking for...')"
@@ -34,8 +35,11 @@
           </div>
         </div>
       </div>
-      <div v-if="visibleProducts.length && categories.length > 1" class="categories">
+      <div v-if="categories.length > 0" class="categories">
         <category-panel :categories="categories" v-model="selectedCategoryIds" />
+      </div>
+      <div v-if="manufacturers.length > 0" class="categories">
+        <manufacturer-panel :categories="manufacturers" v-model="selectedManufacturerIds" />
       </div>
       <div class="product-listing row">
         <product-tile
@@ -82,13 +86,15 @@ import SearchPanel from '@vue-storefront/core/compatibility/components/blocks/Se
 import ProductTile from 'theme/components/core/ProductTile'
 import VueOfflineMixin from 'vue-offline/mixin'
 import CategoryPanel from 'theme/components/core/blocks/Category/CategoryPanel'
+import ManufacturerPanel from 'theme/components/core/blocks/Category/ManufacturerPanel'
 import { minLength } from 'vuelidate/lib/validators'
 import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock'
 
 export default {
   components: {
     ProductTile,
-    CategoryPanel
+    CategoryPanel,
+    ManufacturerPanel
   },
   mixins: [SearchPanel, VueOfflineMixin],
   validations: {
@@ -98,17 +104,26 @@ export default {
   },
   data () {
     return {
-      selectedCategoryIds: []
+      selectedCategoryIds: [],
+      selectedManufacturerIds: []
     }
   },
   computed: {
     visibleProducts () {
-      const productList = this.products || []
+      let productList = this.products || []
       if (this.selectedCategoryIds.length) {
-        return productList.filter(product => product.category_ids.some(categoryId => {
-          return this.selectedCategoryIds.includes(categoryId)
+        productList = productList.filter(product => product.category_ids.some(categoryId => {
+          const catId = parseInt(categoryId)
+          return this.selectedCategoryIds.includes(catId)
         }))
       }
+      if (this.selectedManufacturerIds.length) {
+        productList = productList.filter(product => product.manufacturer_ids.some(manufacturerId => {
+          const manId = parseInt(manufacturerId)
+          return this.selectedManufacturerIds.includes(manId)
+        }))
+      }
+      this.emptyResults = productList.length < 1
       return productList
     },
     categories () {
@@ -123,6 +138,18 @@ export default {
 
       return distinctCategories
     },
+    manufacturers () {
+      const manufacturers = this.products
+        .filter(p => p.manufacturer)
+        .map(p => p.manufacturer)
+        .flat()
+
+      const distinctManufacturers = Array.from(
+        new Set(manufacturers.map(m => m.manufacturer_id))
+      ).map(manufacturerId => manufacturers.find(m => m.manufacturer_id === manufacturerId))
+
+      return distinctManufacturers
+    },
     getNoResultsMessage () {
       let msg = ''
       if (!this.$v.search.minLength) {
@@ -135,7 +162,11 @@ export default {
   },
   watch: {
     categories () {
+      console.log(this.products)
       this.selectedCategoryIds = []
+    },
+    manufacturers () {
+      this.selectedManufacturersIds = []
     }
   },
   mounted () {
@@ -145,6 +176,13 @@ export default {
   },
   destroyed () {
     clearAllBodyScrollLocks()
+  },
+  methods: {
+    onSearchEnter () {
+      console.log('onSearchEnter')
+      this.$store.commit('ui/setSearchpanel', false)
+      this.$router.push('/search/all-1/?q=' + encodeURI(this.search))
+    }
   }
 }
 </script>

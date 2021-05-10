@@ -15,6 +15,12 @@
             <breadcrumbs
               class="pt40 pb20 hidden-xs"
             />
+            <div
+              class="mb20 uppercase cl-secondary"
+              :content="getCurrentProduct.manufacturer_name"
+            >
+              {{ getCurrentProduct.manufacturer_name }}
+            </div>
             <h1
               class="mb20 mt0 cl-mine-shaft product-name"
               data-testid="productName"
@@ -26,6 +32,12 @@
                 class="web-share"
               />
             </h1>
+            <div
+              class="mb20 uppercase cl-secondary"
+              :content="getCurrentProduct.id"
+            >
+              {{ $t('ProductId: {id}', { id: getCurrentProduct.id }) }}
+            </div>
             <div
               class="mb20 uppercase cl-secondary"
               :content="getCurrentProduct.sku"
@@ -83,14 +95,6 @@
                         @change="changeFilter"
                       />
                     </div>
-                    <span
-                      v-if="option.label == 'Size'"
-                      @click="openSizeGuide"
-                      class="p0 ml30 inline-flex middle-xs no-underline h5 action size-guide pointer cl-secondary"
-                    >
-                      <i class="pr5 material-icons">accessibility</i>
-                      <span>{{ $t('Size guide') }}</span>
-                    </span>
                   </div>
                 </div>
               </div>
@@ -138,15 +142,17 @@
       </div>
     </section>
     <section class="container px15 pt50 pb35 cl-accent details">
-      <h2 class="h3 m0 mb10 serif lh20 details-title">
+      <h2 class="h3 m0 mb10 sans-serif lh20 details-title">
         {{ $t('Product details') }}
       </h2>
       <div class="h4 details-wrapper" :class="{'details-wrapper--open': detailsOpen}">
         <div class="row between-md m0">
           <div class="col-xs-12 col-sm-6">
+            Hier stehen die Produktdetails, die in AP+ und später im PIM-System gepflegt werden:
             <div class="lh30 h5" v-html="getCurrentProduct.description" />
           </div>
           <div class="col-xs-12 col-sm-5">
+            Hier stehen die Attribute, die in AP+ und später im PIM-System gepflegt werden:
             <ul class="attributes p0 pt5 m0">
               <product-attribute
                 :key="attr.attribute_code"
@@ -161,19 +167,36 @@
         </div>
       </div>
     </section>
+<!--    <lazy-hydrate when-idle>-->
+<!--      <reviews-->
+<!--        :product-name="getCurrentProduct.name"-->
+<!--        :product-id="getCurrentProduct.id"-->
+<!--        v-show="isOnline"-->
+<!--        :product="getCurrentProduct"-->
+<!--      />-->
+<!--    </lazy-hydrate>-->
     <lazy-hydrate when-idle>
-      <reviews
-        :product-name="getCurrentProduct.name"
-        :product-id="getCurrentProduct.id"
-        v-show="isOnline"
-        :product="getCurrentProduct"
-      />
-    </lazy-hydrate>
-    <lazy-hydrate when-idle>
-      <related-products type="upsell" :heading="$t('We found other products you might like')" />
+      <related-tlbs-products type="Upgrade" heading="Upgrades" />
     </lazy-hydrate>
     <lazy-hydrate when-idle>
       <promoted-offers single-banner />
+    </lazy-hydrate>
+    <lazy-hydrate when-idle>
+      <related-tlbs-products type="Zusatzprodukte" heading="Zusatzprodukte" />
+    </lazy-hydrate>
+    <lazy-hydrate when-idle>
+      <related-tlbs-products type="Support" heading="Support" />
+    </lazy-hydrate>
+    <lazy-hydrate when-idle>
+      <related-tlbs-products type="Zubehör" heading="Zubehör" />
+    </lazy-hydrate>
+    <lazy-hydrate when-idle>
+      <section class="py20 new-collection container px15">
+        <my-recently-viewed />
+      </section>
+    </lazy-hydrate>
+    <lazy-hydrate when-idle>
+      <related-products type="upsell" :heading="$t('We found other products you might like')" />
     </lazy-hydrate>
     <lazy-hydrate when-idle>
       <related-products type="related" />
@@ -188,6 +211,7 @@ import i18n from '@vue-storefront/i18n'
 import VueOfflineMixin from 'vue-offline/mixin'
 import config from 'config'
 import RelatedProducts from 'theme/components/core/blocks/Product/Related.vue'
+import RelatedTlbsProducts from 'theme/components/core/blocks/Product/RelatedTlbs.vue'
 import Reviews from 'theme/components/core/blocks/Reviews/Reviews.vue'
 import AddToCart from 'theme/components/core/AddToCart.vue'
 import GenericSelector from 'theme/components/core/GenericSelector'
@@ -223,6 +247,7 @@ import { catalogHooksExecutors } from '@vue-storefront/core/modules/catalog-next
 import ProductPrice from 'theme/components/core/ProductPrice.vue'
 import { doPlatformPricesSync } from '@vue-storefront/core/modules/catalog/helpers'
 import { filterChangedProduct } from '@vue-storefront/core/modules/catalog/events'
+import MyRecentlyViewed from '../components/core/blocks/MyAccount/MyRecentlyViewed'
 
 export default {
   components: {
@@ -245,7 +270,9 @@ export default {
     SizeGuide,
     LazyHydrate,
     ProductQuantity,
-    ProductPrice
+    ProductPrice,
+    MyRecentlyViewed,
+    RelatedTlbsProducts
   },
   mixins: [ProductOption],
   directives: { focusClean },
@@ -282,6 +309,8 @@ export default {
       return onlineHelper.isOnline
     },
     getProductOptions () {
+      console.log(this.getCurrentProduct)
+      console.log(this.getCurrentProduct.configurable_options)
       if (
         this.getCurrentProduct.errors &&
         Object.keys(this.getCurrentProduct.errors).length &&
@@ -306,6 +335,7 @@ export default {
         .sort((a, b) => { return a.attribute_id > b.attribute_id })
     },
     getAvailableFilters () {
+      console.log(getAvailableFiltersByProduct(this.getCurrentProduct))
       return getAvailableFiltersByProduct(this.getCurrentProduct)
     },
     getSelectedFilters () {

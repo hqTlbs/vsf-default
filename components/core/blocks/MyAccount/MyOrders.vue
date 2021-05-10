@@ -14,25 +14,25 @@
         <table class="brdr-1 brdr-cl-bg-secondary">
           <thead>
             <tr>
-              <th class="p20 serif lh20">
+              <th class="p20 sans-serif lh20">
                 {{ $t('Order ID') }}
               </th>
-              <th class="p20 serif lh20 hide-on-xs">
+              <th class="p20 sans-serif lh20 hide-on-xs">
                 {{ $t('Date and time') }}
               </th>
-              <th class="p20 serif lh20 hide-on-xs">
+              <th class="p20 sans-serif lh20 hide-on-xs">
                 {{ $t('Author') }}
               </th>
-              <th class="p20 serif lh20 hide-on-xs">
+              <th class="p20 sans-serif lh20 hide-on-xs">
                 {{ $t('Value') }}
               </th>
-              <th class="p20 serif lh20 hide-on-xs">
+              <th class="p20 ssans-erif lh20 hide-on-xs">
                 {{ $t('Type') }}
               </th>
-              <th class="p20 serif lh20 hide-on-xs">
+              <th class="p20 sans-serif lh20 hide-on-xs">
                 {{ $t('Status') }}
               </th>
-              <th class="p20 serif lh20">
+              <th class="p20 sans-serif lh20">
 &nbsp;
               </th>
             </tr>

@@ -5,7 +5,7 @@
         {{ $t('Order Summary') }}
       </h3>
       <product v-for="product in productsInCart" :key="product.server_item_id || product.id" :product="product" />
-      <div v-if="productsInCart && productsInCart.length" class="checkout bg-cl-secondary pt10 serif cl-accent">
+      <div v-if="productsInCart && productsInCart.length" class="checkout bg-cl-secondary pt10 sans-serif cl-accent">
         <div v-for="(segment, index) in totals" :key="index" class="row pt15 pb20 pl30 pr55 " v-if="segment.code !== 'grand_total'">
           <div class="col-xs cl-accent">
             {{ segment.title }}

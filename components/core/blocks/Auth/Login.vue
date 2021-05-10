@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header class="modal-header py25 px65 h1 serif weight-700 bg-cl-secondary">
+    <header class="modal-header py25 px65 h1 sans-serif weight-700 bg-cl-secondary">
       {{ $t('Log in') }}
       <i
         slot="close"

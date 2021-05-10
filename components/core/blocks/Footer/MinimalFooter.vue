@@ -11,37 +11,15 @@
           >
             <div class="start-md">
               <h3 class="cl-accent weight-400">
-                {{ $t('Departments') }}
-              </h3>
-              <div class="mt15">
-                <router-link class="cl-secondary" :to="localizedRoute('/women/women-20')" exact>
-                  {{ $t('Women fashion') }}
-                </router-link>
-              </div>
-              <div class="mt15">
-                <router-link class="cl-secondary" :to="localizedRoute('/men/men-11')" exact>
-                  {{ $t("Men's fashion") }}
-                </router-link>
-              </div>
-              <div class="mt15">
-                <router-link class="cl-secondary" :to="localizedRoute('/')" exact>
-                  {{ $t('Kidswear') }}
-                </router-link>
-              </div>
-              <div class="mt15">
-                <router-link class="cl-secondary" :to="localizedRoute('/')" exact>
-                  {{ $t('Home') }}
-                </router-link>
-              </div>
-            </div>
-            <div class="start-md">
-              <h3 class="cl-accent weight-400">
                 {{ $t('Orders') }}
               </h3>
               <div class="mt15">
-                <router-link class="cl-secondary" :to="localizedRoute('/my-account')" exact>
+                <router-link v-show="isLogged" class="cl-secondary" :to="localizedRoute('/my-account')" exact>
                   {{ $t('My account') }}
                 </router-link>
+                <a v-show="!isLogged" class="cl-secondary" href="#" @click.prevent="goToAccount">
+                  {{ $t('My account') }}
+                </a>
               </div>
               <div class="mt15">
                 <router-link class="cl-secondary" :to="localizedRoute('/delivery')" exact>
@@ -64,11 +42,6 @@
                 </router-link>
               </div>
               <div class="mt15">
-                <router-link class="cl-secondary" :to="localizedRoute('/size-guide')" exact>
-                  {{ $t('Size guide') }}
-                </router-link>
-              </div>
-              <div class="mt15">
                 <router-link class="cl-secondary" :to="localizedRoute('/contact')" exact>
                   {{ $t('Contact us') }}
                 </router-link>
@@ -79,25 +52,13 @@
                 {{ $t('About us') }}
               </h3>
               <div class="mt15">
-                <router-link class="cl-secondary" :to="localizedRoute('/about-us')" exact>
-                  {{ $t('About us') }}
+                <router-link class="cl-secondary" :to="getLinkFor('/about-us')" exact>
+                  {{ $t('About us (Magento CMS)') }}
                 </router-link>
               </div>
               <div class="mt15">
-                <router-link class="cl-secondary" :to="localizedRoute('/store-locator')" exact>
-                  {{ $t('Store locator') }}
-                </router-link>
-              </div>
-              <div class="mt15">
-                <!-- Link to custom Magento Cms Page -->
-                <router-link class="cl-secondary" :to="localizedRoute('/custom-cms-page')" exact>
-                  {{ $t('Custom Cms Page') }}
-                </router-link>
-              </div>
-              <div class="mt15">
-                <!-- Link to synced Magento Cms Page -->
-                <router-link class="cl-secondary" :to="localizedRoute('/cms-page-sync')" exact>
-                  {{ $t('Cms Page Sync') }}
+                <router-link class="cl-secondary" :to="getLinkFor('/customer-service')" exact>
+                  {{ $t('Customer service (Magento CMS)') }}
                 </router-link>
               </div>
             </div>
@@ -148,8 +109,14 @@
     </div>
     <div class="container">
       <div class="row middle-xs px15 bottom-links">
+        <div class="col-xs-5 col-sm-3 cl-tertiary">
+          <language-switcher v-if="multistoreEnabled" />
+        </div>
         <div class="col-xs col-sm-9 end-xs">
           <ul class="pl0 links" data-testid="bottomLinks">
+            <li class="footer__version-info">
+              {{ getVersionInfo }}
+            </li>
             <li class="inline-flex">
               <router-link
                 class="cl-tertiary mr10 underline"
@@ -172,21 +139,53 @@
         </div>
       </div>
     </div>
+    <back-to-top bottom="20px" right="20px" visibleoffset="200">
+      <button type="button" class="btn-top button no-outline brdr-none cl-white bg-cl-mine-shaft :bg-cl-th-secondary py10 px10">
+        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+          <path d="M23.245 20l-11.245-14.374-11.219 14.374-.781-.619 12-15.381 12 15.391-.755.609z" fill="white" />
+        </svg>
+      </button>
+    </back-to-top>
   </footer>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import { currentStoreView, localizedRoute } from '@vue-storefront/core/lib/multistore'
 import CurrentPage from 'theme/mixins/currentPage'
+import LanguageSwitcher from '../../LanguageSwitcher.vue'
+import Newsletter from 'theme/components/core/blocks/Footer/Newsletter'
+import BackToTop from 'theme/components/core/BackToTop'
+import { getPathForStaticPage } from 'theme/helpers'
 import config from 'config'
 
 export default {
+  mixins: [CurrentPage],
   name: 'MainFooter',
-  computed: {
-    multistoreEnabled () {
-      return config.storeViews.multistore
+  methods: {
+    goToAccount () {
+      this.$bus.$emit('modal-toggle', 'modal-signup')
+    },
+    getLinkFor (path) {
+      return localizedRoute(getPathForStaticPage(path))
     }
   },
-  mixins: [CurrentPage]
+  computed: {
+    ...mapGetters({
+      isLogged: 'user/isLoggedIn'
+    }),
+    multistoreEnabled () {
+      return config.storeViews.multistore
+    },
+    getVersionInfo () {
+      return `v${process.env.__APPVERSION__} ${process.env.__BUILDTIME__}`
+    }
+  },
+  components: {
+    Newsletter,
+    LanguageSwitcher,
+    BackToTop
+  }
 }
 </script>
 
@@ -212,11 +211,30 @@ $color-secondary: color(secondary);
 }
 .links {
   list-style-type: none;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+  }
 }
 
 .bottom-links {
   @media (max-width: 767px) {
     padding: 0;
+  }
+}
+
+.footer__version-info {
+  display: flex;
+  color: $color-secondary;
+  font-size: 0.7rem;
+  @media (min-width: 768px) {
+    margin-right: 1rem;
+    font-size: 0.8rem;
   }
 }
 

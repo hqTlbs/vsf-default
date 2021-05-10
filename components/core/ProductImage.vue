@@ -7,7 +7,7 @@
   >
     <img
       v-show="showPlaceholder"
-      src="/assets/placeholder.svg"
+      src="/assets/placeholder.jpg"
       :alt="alt"
       class="product-image__placeholder"
     >
@@ -124,7 +124,7 @@ export default {
     }
     &--width {
       .product-image__thumb {
-        width: 100%;
+        width: 70%;
       }
     }
   }

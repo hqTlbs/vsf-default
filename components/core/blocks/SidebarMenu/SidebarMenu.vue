@@ -7,19 +7,25 @@
       >
         <sub-btn type="back" class="bg-cl-transparent brdr-none" />
       </div>
-      <div class="col-xs bg-cl-primary">
+      <div class="col-xs bg-cl-secondary weight-700" style="padding-top: 16px; padding-left: 33px; font-size: 20px;">
+        Menü
+      </div>
+      <div class="col-xs bg-cl-secondary" style="padding-top: 16px; padding-left: 33px; font-size: 20px;">
+        Service
+      </div>
+      <div class="col-xs bg-cl-secondary">
         <button
           type="button"
           :aria-label="$t('Close')"
           class="w-100 inline-flex end-xs bg-cl-transparent brdr-none p0 close-btn"
           @click="closeMenu"
         >
-          <i class="material-icons p15">close</i>
+          <i class="material-icons p15 cl-accent">close</i>
         </button>
       </div>
     </div>
     <div class="sidebar-menu__container row" ref="container">
-      <div class="col-xs-12 h4 serif">
+      <div class="col-xs-12 h4 sans-serif">
         <ul class="p0 m0 relative sidebar-menu__list" :style="mainListStyles">
           <li
             @click="closeMenu"
@@ -68,10 +74,10 @@
           <li
             v-if="isCurrentMenuShowed"
             @click="closeMenu"
-            class="bg-cl-secondary"
+            class="bg-cl-tertiary"
           >
             <router-link
-              class="block px25 py20 brdr-bottom-1 brdr-cl-secondary cl-accent no-underline fs-medium-small"
+              class="block px25 py20 brdr-bottom-1 brdr-cl-secondary no-underline fs-medium-small"
               :to="localizedRoute('/sale')"
               exact
             >
@@ -79,22 +85,9 @@
             </router-link>
           </li>
           <li
-            v-if="isCurrentMenuShowed"
-            @click="closeMenu"
-            class="bg-cl-secondary"
-          >
-            <router-link
-              class="block px25 py20 brdr-bottom-1 brdr-cl-secondary cl-accent no-underline fs-medium-small"
-              :to="localizedRoute('/magazine')"
-              exact
-            >
-              {{ $t('Magazine') }}
-            </router-link>
-          </li>
-          <li
             v-if="compareIsActive && isCurrentMenuShowed"
             @click="closeMenu"
-            class="bg-cl-secondary"
+            class="bg-cl-tertiary"
           >
             <router-link
               class="block px25 py20 brdr-bottom-1 brdr-cl-secondary cl-accent no-underline fs-medium-small"
@@ -106,14 +99,14 @@
           </li>
           <li
             @click="login"
-            class="brdr-bottom-1 brdr-cl-secondary bg-cl-secondary flex"
+            class="bg-cl-tertiary"
           >
             <sub-btn
               v-if="currentUser"
               id="my-account-links"
               :is-category="false"
               :name="$t('My account')"
-              class="bg-cl-transparent brdr-none fs-medium-small"
+              class="bg-cl-tertiary brdr-none fs-medium-small"
             />
             <sub-category
               v-if="currentUser"
@@ -125,7 +118,7 @@
               v-if="!currentUser && isCurrentMenuShowed"
               href="#"
               @click.prevent="closeMenu"
-              class="block w-100 px25 py20 cl-accent no-underline fs-medium-small"
+              class="block px25 py20 brdr-bottom-1 brdr-cl-secondary cl-accent no-underline fs-medium-small"
             >
               {{ $t('My account') }}
             </a>
@@ -241,6 +234,7 @@ export default {
 $bg-secondary: color(secondary, $colors-background);
 $color-gainsboro: color(gainsboro);
 $color-matterhorn: color(matterhorn);
+$color-black: color(black);
 $color-mine-shaft: color(mine-shaft);
 
 .sidebar-menu {
@@ -295,12 +289,12 @@ $color-mine-shaft: color(mine-shaft);
 
   .close-btn {
     i {
-      color: $color-gainsboro;
+      color: $color-matterhorn;
     }
     &:hover,
     &:focus {
       i {
-        color: $color-matterhorn;
+        color: $color-black;
       }
     }
   }

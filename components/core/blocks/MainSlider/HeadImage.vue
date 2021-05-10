@@ -1,12 +1,12 @@
 <template>
-  <section class="head-image w-100 bg-cl-th-accent cl-white">
-    <div class="container w-100 h-100 cl-black" v-lazy:background-image="currentImage.image" v-if="currentImage">
+  <section class="head-image cl-white">
+    <div class="container h-100" v-lazy:background-image="currentImage.image" v-if="currentImage">
       <div class="head-image-content">
         <h1 class="title" data-testid="mainSliderTitle">
           {{ currentImage.title }}
         </h1>
         <p
-          class="subtitle mb0 serif h3"
+          class="subtitle mb0 sans-serif h3"
           data-testid="mainSliderSubtitle"
         >
           {{ currentImage.subtitle }}
@@ -69,15 +69,15 @@ export default {
 }
 
 .head-image {
-  height: 640px;
+  height: 425px;
 }
 .container {
-  background-size: cover;
+  background-size: contain;
   background-position: bottom center;
   background-repeat: no-repeat;
 }
 .row {
-  height: 640px;
+  height: 425px;
 }
 @media (max-width: 75em) {
   .head-image {

@@ -1,32 +1,60 @@
 <template>
-  <div class="product-listing row m0 center-xs start-md">
+  <div
+    class="product-listing m0 center-xs start-md"
+    :class="parentStyle"
+  >
     <div
-      v-for="(product, key) in products"
+      v-for="(product) in products"
       :key="product.id"
-      class="col-sm-6 flex"
-      :class="['col-md-' + (12/columns)%10, wide(product.sale, product.new, key)]"
+      :class="style"
     >
-      <product-tile :product="product" />
+      <product-tile v-if="type=='grid'" :product="product" />
+      <product-tile-list v-else :product="product" />
     </div>
   </div>
 </template>
 
 <script>
 import ProductTile from 'theme/components/core/ProductTile'
+import ProductTileList from 'theme/components/core/ProductTileList'
 let lastHero = 0
 export default {
   name: 'ProductListing',
   components: {
-    ProductTile
+    ProductTile,
+    ProductTileList
   },
   props: {
     products: {
       type: null,
       required: true
     },
+    type: {
+      type: String,
+      default: 'grid'
+    },
     columns: {
       type: [Number, String],
       required: true
+    }
+  },
+  computed: {
+    parentStyle () {
+      let css
+      if (this.type === 'grid') {
+        css = 'row'
+      }
+      return css
+    },
+    style () {
+      let css
+      if (this.type === 'grid') {
+        css = 'col-sm-6 flex col-md-' + (12 / this.columns) % 10
+        // css = css + ' wide(' + this.product.sale + ',' + this.product.new + ',' + this.key + ')'
+      } else {
+        css = 'row'
+      }
+      return css
     }
   },
   methods: {

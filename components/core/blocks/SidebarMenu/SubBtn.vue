@@ -1,7 +1,7 @@
 <template>
   <button
     v-if="type === 'next'"
-    class="inline-flex between-xs w-100 px25 py20 pr15 serif cl-accent"
+    class="inline-flex between-xs w-100 px25 py20 pr15 sans-serif cl-accent"
     type="button"
     @click.stop="next()"
     :aria-label="$t('Show subcategories')"

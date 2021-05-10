@@ -7,7 +7,7 @@
             <div class="row middle-xs center-xs">
               <div class="col-md-12 px10p">
                 <p
-                  class="subtitle mb0 serif uppercase h3 align-center"
+                  class="subtitle mb0 sans-serif uppercase h3 align-center"
                   data-testid="mainSliderSubtitle"
                 >
                   {{ slide.subtitle }}

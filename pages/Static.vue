@@ -12,7 +12,7 @@
     <div class="container pt45 pb70">
       <div class="row pl20 pt0">
         <div class="col-sm-3">
-          <nav class="static-menu serif h4 mb35">
+          <nav class="static-menu sans-serif h4 mb35">
             <ul class="m0 p0">
               <li class="mb10" v-for="element in navigation" :key="element.id">
                 <router-link :to="localizedRoute(element.link)" class="cl-accent relative">
@@ -69,11 +69,9 @@ export default {
       navigation: [
         { title: i18n.t('About us'), link: getPathForStaticPage('/about-us'), component: StaticExample },
         { title: i18n.t('Customer service'), link: getPathForStaticPage('/customer-service'), component: StaticShortExample },
-        { title: i18n.t('Store locator'), link: localizedRoute('/store-locator'), component: StaticExample },
         { title: i18n.t('Delivery'), link: '/delivery', component: StaticShortExample },
         { title: i18n.t('Return policy'), link: '/returns', component: StaticExample },
         { title: i18n.t('Privacy policy'), link: '/privacy', component: StaticShortExample },
-        { title: i18n.t('Size guide'), link: '/size-guide', component: StaticExample },
         { title: i18n.t('Contact us'), link: '/contact', component: StaticShortExample }
       ]
     }

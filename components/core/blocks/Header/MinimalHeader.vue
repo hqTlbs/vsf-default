@@ -6,7 +6,7 @@
     >
       <div class="container px15">
         <div class="row between-xs middle-xs">
-          <div class="col-sm-4 col-xs-2 middle-xs">
+          <div class="col-sm-1 col-xs-1 middle-xs">
             <div>
               <template>
                 <a
@@ -20,10 +20,10 @@
             </div>
           </div>
           <div class="col-xs-2 visible-xs" />
-          <div class="col-sm-4 col-xs-4 center-xs">
+          <div class="col-sm-7 col-xs-7 left">
             <div>
               <a class="no-underline inline-flex" href="/" data-testid="logo">
-                <img width="auto" height="41px" src="/assets/logo.svg" :alt="$t(defaultTitle)">
+                <img width="auto" height="41px" src="/assets/logo.png" :alt="$t(defaultTitle)">
               </a>
             </div>
           </div>

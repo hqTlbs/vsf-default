@@ -1,32 +1,32 @@
 {
   "mainBanners": [
     {
-      "title": "Office casual",
+      "title": "CMS Content 4",
       "subtitle": "Collection",
-      "image": "/assets/ban1.jpg",
-      "link": "/women.html"
+      "image": "/assets/banner5.png",
+      "link": "/all-1"
     }
   ],
   "smallBanners": [
     {
-      "title": "Shine on",
-      "subtitle": "Accessories",
-      "image": "/assets/ban2.jpg",
-      "link": "/men.html"
+      "title": "CMS Content 2",
+      "subtitle": "Zubehör",
+      "image": "/assets/banner2.png",
+      "link": "/all-1"
     },
     {
-      "title": "Spring is coming",
-      "subtitle": "Hats",
-      "image": "/assets/ban3.jpg",
-      "link": "/gear.html"
+      "title": "CMS Content 3",
+      "subtitle": "Faxsoftware",
+      "image": "/assets/banner6.png",
+      "link": "/all-1"
     }
   ],
   "productBanners": [
     {
-      "title": "Spring is coming",
-      "subtitle": "Hats",
-      "image": "/assets/ban3.jpg",
-      "link": "/gear.html"
+      "title": "Werbeblock aus dem CMS",
+      "subtitle": "Firewalls",
+      "image": "/assets/banner4.png",
+      "link": "/1/firewalls-90"
     }
   ]
 }
