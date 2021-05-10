@@ -27,16 +27,16 @@ $colors: (
 // Value: color value or map with default, hover, focus color values
 $colors-theme: (
   primary: (
-    default: map-get($colors, matterhorn),
-    hover: map-get($colors, matterhorn)
+    default: map-get($colors, black),
+    hover: map-get($colors, black)
   ),
   secondary: (
     default: map-get($colors, gray),
     hover: map-get($colors, matterhorn),
   ),
   accent: (
-    default: map-get($colors, matterhorn),
-    hover: map-get($colors, black),
+    default: map-get($colors, black),
+    hover: map-get($colors, matterhorn),
   ),
   tertiary: map-get($colors, silver),
   success: map-get($colors, puerto-rico),
