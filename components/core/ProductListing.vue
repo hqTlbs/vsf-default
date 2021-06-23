@@ -1,6 +1,6 @@
 <template>
   <v-row class="lastseen flex-wrap">
-    <product-tile v-if="type=='grid'" v-for="product in products" :product="product" :key="product.id" :description="description" />
+    <product-tile v-if="type=='grid'" v-for="product in products" :product="product" :key="product.id" :description="description" :xl="xl" :lg="lg" :md="md" :sm="sm" />
     <product-tile-list v-else :product="product" />
   </v-row>
 </template>
@@ -27,6 +27,22 @@ export default {
     columns: {
       type: [Number, String],
       required: true
+    },
+    xl: {
+      type: String,
+      default: '4'
+    },
+    lg: {
+      type: String,
+      default: '4'
+    },
+    md: {
+      type: String,
+      default: '6'
+    },
+    sm: {
+      type: String,
+      default: '6'
     },
     description: {
       type: Boolean,

@@ -17,11 +17,19 @@
         </div>
         <!--Product Headbereich Ende-->
         <!-- 3erBlock Start-->
+<!--        <v-row>-->
+<!--          <product-gallery-->
+<!--            :offline="getOfflineImage"-->
+<!--            :gallery="getProductGallery"-->
+<!--            :configuration="getCurrentProductConfiguration"-->
+<!--            :product="getCurrentProduct"-->
+<!--          />-->
+<!--        </v-row>-->
         <v-row>
           <!-- imagecol-->
           <v-col sm="12" md="4" lg="5" class="imagecol">
             <div class="imagecol__mainimage d-flex align-center justify-center">
-              <v-img contain :src="variants[chosenvariant].image" class="productimage"/>
+              <v-img contain :src="getImage" class="productimage"/>
             </div>
             <template v-for="item in variants[chosenvariant].subimages">
               <div class="imagecol__subimage d-flex align-center justify-center">
@@ -408,7 +416,7 @@
         <div class="contentblock">
         <lazy-hydrate when-idle>
           <section class="py20 container px15">
-            <my-recently-viewed/>
+            <my-recently-viewed />
           </section>
         </lazy-hydrate>
         </div>
@@ -926,6 +934,10 @@ export default {
       attributesByCode: 'attribute/attributeListByCode',
       getCurrentCustomOptions: 'product/getCurrentCustomOptions'
     }),
+    getImage () {
+      console.log('https://shop.adn.de/out/' + this.getCurrentProduct.image)
+      return 'https://shop.adn.de/out/' + this.getCurrentProduct.image
+    },
     getLongDescription () {
       return '<div>Neu</div>'
     },

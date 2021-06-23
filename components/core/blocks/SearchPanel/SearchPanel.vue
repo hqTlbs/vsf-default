@@ -48,6 +48,7 @@
             :key="product.id"
             :product="product"
             @click.native="closeSearchpanel"
+            xl="4" lg="4" md="6" sm="6"
           />
           <transition name="fade">
             <div

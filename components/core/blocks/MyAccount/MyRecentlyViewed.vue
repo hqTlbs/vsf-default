@@ -3,7 +3,7 @@
     <h2>{{ $t('My Recently viewed products') }}</h2>
     <!--wird ab hier mit List/Grid Ansicht ersetzt  toolbar:false infotext:false filter:false-->
     <div class="products__gridview">
-        <product-listing columns="6" :products="items" :description="false" v-if="items && items.length > 0" />
+        <product-listing columns="6" :products="items" :description="false" v-if="items && items.length > 0" xl="2" lg="2" md="4" sm="4" />
       <v-row class="flex-wrap h4" v-else>
         {{ $t('No products yet') }}
       </v-row>

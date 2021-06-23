@@ -1,5 +1,5 @@
 <template>
-  <v-col xl="4" lg="4" md="6" sm="6"
+  <v-col :xl="xl" :lg="lg" :md="md" :sm="sm"
          class="d-flex flex-column pr-0 pb-5 flex-grow-1 flex-shrink-0 justify-center products__gridview__item"
   >
     <v-card tile elevation="0" outlined class="mb-1 flex-grow-1 flex-shrink-1">
@@ -94,6 +94,22 @@ export default {
     onlyImage: {
       type: Boolean,
       default: false
+    },
+    xl: {
+      type: String,
+      default: '4'
+    },
+    lg: {
+      type: String,
+      default: '4'
+    },
+    md: {
+      type: String,
+      default: '6'
+    },
+    sm: {
+      type: String,
+      default: '6'
     }
   },
   computed: {
