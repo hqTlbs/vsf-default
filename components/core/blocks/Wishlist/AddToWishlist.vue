@@ -1,15 +1,24 @@
 <template>
-  <button @click="isOnWishlist ? removeProductFromWhishList(product) : addProductToWhishlist(product)" class="p0 inline-flex middle-xs bg-cl-transparent brdr-none action h5 pointer cl-secondary" type="button" data-testid="addToWishlist">
-    <slot>
-      <i class="pr5 material-icons">{{ favoriteIcon }}</i>
-      <template v-if="!isOnWishlist">
-        {{ $t('Add to favorite') }}
-      </template>
-      <template v-else>
-        {{ $t('Remove') }}
-      </template>
-    </slot>
-  </button>
+  <v-btn tile elevation="0" @click="isOnWishlist ? removeProductFromWhishList(product) : addProductToWhishlist(product)"
+         data-testid="addToWishlist"
+  >
+    <span v-if="!isOnWishlist">
+      <v-icon
+        :title="$t('Add to favorite')"
+        class="outlined"
+      >
+        favorite_border
+      </v-icon>
+    </span>
+    <span v-else>
+      <v-icon
+        :title="$t('Remove')"
+        class="outlined"
+      >
+        favorite_border
+      </v-icon>
+    </span>
+  </v-btn>
 </template>
 
 <script>
@@ -20,7 +29,7 @@ import i18n from '@vue-storefront/i18n'
 import { htmlDecode } from '@vue-storefront/core/lib/store/filters'
 
 export default {
-  mixins: [ IsOnWishlist, AddToWishlist, RemoveFromWishlist ],
+  mixins: [IsOnWishlist, AddToWishlist, RemoveFromWishlist],
   computed: {
     favoriteIcon () {
       return this.isOnWishlist ? 'favorite' : 'favorite_border'

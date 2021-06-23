@@ -1,7 +1,10 @@
 <template>
-  <button-full @click.native="addToCart(product)" :disabled="isProductDisabled" data-testid="addToCart">
+  <v-btn depressed block dark tile class="mt-2 inbasket" @click.native="addToCart(product)" :disabled="isProductDisabled" data-testid="addToCart">
+    <v-icon left dark>
+      add_shopping_cart
+    </v-icon>
     {{ $t('Add to cart') }}
-  </button-full>
+  </v-btn>
 </template>
 
 <script>

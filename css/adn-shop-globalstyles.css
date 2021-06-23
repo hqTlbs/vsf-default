@@ -1,0 +1,336 @@
+  /*
+        CI-Konforme Farben
+            $cired: #EA152A;
+            $darkblue: #00125A;
+            $highlightblue1: #0F129D;
+            $highlightblue2: #0A57E3;
+            $highlightblue3: #0A57E3;
+            $lightblue: #00A5DF;
+            $darkgrey: #2E3640;
+            $grey: #ABAFB3;
+            $lightgrey: #EAEBEC;
+
+        Vuetify-Standards
+            $primary: $highlightblue1;
+            $error: $cired;
+
+        Funktional
+            $lightborder: 1px solid $lightgrey;
+            $listbghover: $lightgrey;
+            $lightbackground: $lightgrey;
+            $directactioncolor: $highlightblue1;
+            $linkcolor: $highlightblue1;
+            $linkhovercolor: $cired;
+            $pricecolor: $cired;
+    */
+
+
+    /*vuetify theme*/
+    body, .v-application {
+        font-family: "neueRadial-A-Regular";
+      }
+      .theme--light.v-application, .theme--light.v-list, .theme--light.v-card>.v-card__text, .theme--light.v-input, .theme--light.v-input input, .theme--light.v-input textarea,.theme--light.v-label,
+      .theme--light.v-card {
+        color: #2E3640 ;
+      }
+      .theme--light.v-btn-toggle:not(.v-btn-toggle--group) .v-btn.v-btn {
+        border-color:#2E3640 !important;
+      }
+
+      .theme--light.v-btn.v-btn--icon {
+        color: #0F129D
+      }
+      .theme--light.v-btn.v-btn--has-bg {
+        background: #EAEBEC;
+      }
+      .v-application a {
+        text-decoration: none;
+      }
+
+      .v-application a:hover {
+        color: #EA152A;
+        text-decoration: underline;
+      }
+      .v-application a.v-btn:hover {
+        text-decoration: none;
+      }
+      .v-btn {
+        font-weight: 700;
+        letter-spacing: .02em;
+      }
+      .v-btn.v-btn--has-bg.theme--dark {
+        color: #fff;
+      }
+      .v-list-group {
+        border-bottom: 1px solid #EAEBEC;
+      }
+      .v-list-group__header .v-list-item__title, .v-list-group__header .theme--light.v-icon{
+        color: #0F129D;
+      }
+      .v-list-group__header.v-list-item.v-list-item--active  .v-list-item__title, .v-list-group__header.v-list-item.v-list-item--active .v-list-item__icon.v-list-group__header__append-icon .v-icon {
+        color: #fff;
+      }
+      .v-list-group__header.v-list-item.v-list-item--active.v-list-item--link.theme--light {
+        background: #2E3640;
+      }
+      .v-chip.v-chip--label {
+        border-radius: 0px !important;
+      }
+      .v-text-field--outlined, .v-text-field--solo, .v-menu__content {
+        border-radius: 0;
+      }
+      .v-snack__wrapper.theme--dark {
+        background:#0F129D;
+      }
+      .v-snack__content {
+        font-weight: 700;
+      }
+      .v-expansion-panel-header, .theme--light.v-expansion-panels .v-expansion-panel-header .v-expansion-panel-header__icon .v-icon{
+        color: #0F129D;
+      }
+      .v-expansion-panel-header.v-expansion-panel-header--active, .theme--light.v-expansion-panels .v-expansion-panel-header--active .v-expansion-panel-header__icon .v-icon{
+        color: #fff;
+      }
+      .v-expansion-panel-header {
+        background: #fff;
+      }
+      .v-expansion-panel-header--active{
+        background: #2E3640;
+        color: #fff;
+      }
+      .v-expansion-panel {
+        border: 1px solid #EAEBEC;
+      }
+
+      /* Shop Spezifisc*/
+      .hek,  .heklabel {
+        color: #EA152A;
+      }
+      .v-card__subtitle h4, .v-card__text h4 {
+        font-size: 0.875rem;
+      }
+      .hek {
+        font-family: "neueRadial-A-Bold";
+      }
+      .theme--dark.v-btn.v-btn--has-bg.inbasket {
+        background:#0F129D;
+      }
+      .theme--dark.v-btn.v-btn--has-bg.directorder {
+        background:#0A57E3;
+      }
+      .new, .sale {
+        padding: 5px;
+        padding-top: 10px;
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+        text-align: center;
+        color: #fff;
+        display: inline-block;
+        font-family: "neueRadial-A-Bold";
+        position: absolute;
+        top: 10px;
+        left: 10px;
+      }
+
+      .new {
+        background: #0F129D;
+        text-transform: uppercase;
+      }
+
+      .sale {
+        background: #EA152A;
+        font-weight: 800;
+        font-size: 18px;
+        padding-top: 7px;
+        top: 10px;
+        right: 10px;
+        left: auto;
+      }
+       /*Support Card*/
+       .support__imgbackground {
+        background: #EAEBEC;
+        width: 100%
+      }
+      .support__headline {
+        background-color: #2E3640;
+        color: #fff;
+        display: block;
+        text-align: center;
+        padding:5px;
+      }
+      .support__subline {
+        font-size: 1rem;
+      }
+      .support .v-icon {
+        color: #0F129D;
+      }
+      /*CI-Banner*/
+      .cibanner__head {
+        background:#EA152A;
+        color:#fff;
+        min-height: 165px
+      }
+      .cibanner__preheadline {
+        font-weight: 300;
+        font-size: 1.4rem;
+      }
+      .cibanner__headline {
+        font-weight: 800;
+        font-size: 1.6rem;
+        line-height: 1.8rem;
+      }
+      .cibanner__subtext {
+        background:#EAEBEC;
+        color:#000;
+        text-transform:uppercase;
+        font-weight: 700;
+      }
+
+
+
+  .productname {
+    font-size: 18px;
+    font-weight: 700;
+    max-height: 72px;
+    overflow-y: auto;
+    line-height: 18px;
+  }
+
+  .manufacturer {
+    font-size: 14px;
+  }
+
+  .sku, .adnnr, .shorttext, .listprice  {
+    font-size: 12px;
+  }
+
+  /*listview*/
+  .product__listview__item .hek, .products__gridview .hek  {
+    font-size: 18px;
+  }
+
+  .product__listview__item {
+    border-bottom: 1px solid #EEEFF0;
+  }
+
+  .product__listview__item .new, .product__listview__item .sale {
+    position:relative;
+    z-index:1;
+    top:0px;
+    float:right;
+  }
+
+  /*gridview*/
+  .product__listview .hek.pllogin, .products__gridview .hek.pllogin  {
+    font-size: 16px;
+  }
+  .products__gridview__item .new, .products__gridview__item .sale {
+    position: absolute;
+    top: 10px;
+    z-index: 1;
+  }
+
+  .products__gridview__item .new {
+    left: 10px;
+  }
+
+  .products__gridview__item .sale {
+    right:10px;
+  }
+
+  .products__gridview__item .shorttext{
+    height: 144px;
+    line-height: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 8; /* number of lines to show */
+    -webkit-box-orient: vertical;
+  }
+
+  .products__gridview__item .manufacturer{
+    margin-bottom: 0;
+    padding-left: 15px;
+    margin-top: 20px;
+    padding-bottom: 0;
+  }
+
+  .products__gridview__item .v-card__title.productname{
+    margin-top: 0;
+    padding-top:0;
+  }
+  /* filter */
+  .filter .v-input, .filter .v-label {
+    font-size: 12px;
+    margin: 0 !important;
+  }
+
+  .filter__header {
+    border: 1px solid #EAEBEC;
+  }
+
+  .filter .v-list--dense .v-list-item, .v-list-item--dense {
+    min-height: 25px;
+  }
+
+  .filter .v-list--dense .v-item-group {
+    padding-bottom: 20px;
+    padding-left:0;
+  }
+
+  .filter.desktop .v-list-item-group{
+    max-height: 200px;
+    overflow: auto;
+  }
+
+  .filter__mobile__background {
+    background: #fff;
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: 0;
+    width: 300px;
+    overflow: auto;
+  }
+  .filter__mobile__toolbar.theme--dark.v-toolbar.v-sheet {
+    background: #00125A;
+  }
+  .filter__mobile .v-input--selection-controls {
+    margin-top: 0px;
+  }
+  .filter__mobile__chosen {
+    padding: 5px;
+  }
+  .filter h4,  .filter__mobile__chosen h4 {
+    background-color: #EAEBEC;
+    color: #2E3640;
+    padding: 5px;
+    font-weight: 300;
+    font-size: 14px;
+    margin-bottom: 10px;
+    padding: 5px;
+  }
+
+  /*producttoolbar*/
+  .producttoolbar__viewtoggle .v-btn.v-btn--icon.v-size--default {
+    height: 40px;
+    width: 40px;
+  }
+  .producttoolbar__viewtoggle .v-btn.v-item--active {
+    display: none;
+  }
+  .v-btn.producttoolbar__filterbutton {
+    height: 40px !important;
+  }
+  .producttoolbar__sort {
+    max-width: 85%;
+  }
+
+  .v-chip__content .ellipsis {
+    display: inline-block !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+  }

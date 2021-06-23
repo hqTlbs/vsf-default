@@ -1,6 +1,11 @@
 <template>
-  <router-link :to="localizedRoute('/compare')" class="compare-icon no-underline inline-flex" v-if="isActive" data-testid="compare-list-icon">
-    <i class="material-icons">compare</i>
+  <v-btn
+    icon
+    data-testid="compare-list-icon"
+    :aria-label="$t('Open Comparelist')"
+    :to="localizedRoute('/compare')"
+  >
+    <v-icon>compare</v-icon>
     <span
       class="compare-count absolute flex center-xs middle-xs border-box py0 px2 h6 lh16 weight-700 cl-white bg-cl-silver"
       v-cloak
@@ -8,7 +13,7 @@
     >
       {{ getCompareProductsCount }}
     </span>
-  </router-link>
+  </v-btn>
 </template>
 
 <script>

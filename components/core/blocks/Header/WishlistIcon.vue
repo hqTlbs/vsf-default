@@ -1,12 +1,11 @@
 <template>
-  <button
-    type="button"
-    class="inline-flex bg-cl-transparent brdr-none relative"
+  <v-btn
+    icon
     @click="toggleWishlistPanel"
     data-testid="wishlist-icon"
     :aria-label="$t('Open wishlist')"
   >
-    <i class="material-icons">favorite_border</i>
+    <v-icon>star</v-icon>
     <span
       class="whishlist-count absolute flex center-xs middle-xs border-box py0 px2 h6 lh16 weight-700 cl-white bg-cl-silver"
       v-cloak
@@ -14,7 +13,7 @@
     >
       {{ getWishlistItemsCount }}
     </span>
-  </button>
+  </v-btn>
 </template>
 
 <script>

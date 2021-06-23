@@ -62,7 +62,7 @@ export default {
     .subtitle {
       font-size: 0.8rem;
       max-width: 340px;
-      font-family: 'Roboto', sans-serif;
+      font-family: 'neueRadial-A-Regular', sans-serif;
       line-height: 1.2rem;
     }
   }

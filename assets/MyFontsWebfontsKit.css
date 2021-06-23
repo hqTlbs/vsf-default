@@ -1,0 +1,42 @@
+/**
+ * @license
+ * MyFonts Webfont Build ID 4096457, 2021-06-01T03:44:31-0400
+ *
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are
+ * explicitly restricted from using the Licensed Webfonts(s).
+ *
+ * You may obtain a valid license at the URLs below.
+ *
+ * Webfont: neueRadial-A-Thin by Neue
+ * URL: https://www.myfonts.com/fonts/neue/neue-radial/a-thin/
+ *
+ * Webfont: neueRadial-A-Regular by Neue
+ * URL: https://www.myfonts.com/fonts/neue/neue-radial/a-regular/
+ *
+ * Webfont: neueRadial-A-Bold by Neue
+ * URL: https://www.myfonts.com/fonts/neue/neue-radial/a-bold/
+ *
+ *
+ * Webfonts copyright: Copyright © 2020 published by neue Foundry. All rights reserved.
+ *
+ * © 2021 MyFonts Inc
+*/
+
+
+/* @import must be at top of file, otherwise CSS will not work */
+@import url("//hello.myfonts.net/count/3e81c9");
+
+@font-face {
+  font-family: "neueRadial-A-Regular";
+  src: url('fonts/neueRadialARegular/font.woff2') format('woff2'), url('fonts/neueRadialARegular/font.woff') format('woff');
+}
+@font-face {
+  font-family: "neueRadial-A-Thin";
+  src: url('fonts/neueRadialAThin/font.woff2') format('woff2'), url('fonts/neueRadialAThin/font.woff') format('woff');
+}
+@font-face {
+  font-family: "neueRadial-A-Bold";
+  src: url('fonts/neueRadialABold/font.woff2') format('woff2'), url('fonts/neueRadialABold/font.woff') format('woff');
+}
+

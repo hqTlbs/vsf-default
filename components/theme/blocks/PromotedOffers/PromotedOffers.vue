@@ -133,7 +133,7 @@ export default {
     }
 
     .subtitle {
-      font-family: 'Roboto', sans-serif;
+      font-family: 'neueRadial-A-Regular', sans-serif;
       @media (max-width: 767px) {
         background-color: rgba(255,255,255,0.4);
         padding: 0.5rem;

@@ -1,46 +1,50 @@
 <template>
-  <div class="default-layout">
-    <overlay v-if="overlayActive" />
-    <loader />
-    <div id="viewport" class="w-100 relative">
-      <main-header />
-      <async-sidebar
-        :async-component="SearchPanel"
-        :is-open="isSearchPanelOpen"
-        @close="$store.commit('ui/setSearchpanel')"
-      />
-      <async-sidebar
-        :async-component="Microcart"
-        :is-open="isMicrocartOpen"
-        @close="$store.commit('ui/setMicrocart')"
-      />
-      <async-sidebar
-        :async-component="SidebarMenu"
-        :is-open="isSidebarOpen"
-        @close="$store.commit('ui/setSidebar')"
-        direction="left"
-      />
-      <async-sidebar
-        :async-component="Wishlist"
-        :is-open="isWishlistOpen"
-        @close="$store.commit('ui/setWishlist')"
-      />
-      <slot />
-      <main-footer />
-      <notification />
-      <sign-up />
-      <cookie-notification />
-      <offline-badge />
-      <order-confirmation :orders-data="ordersData" v-if="loadOrderConfirmation" />
-    </div>
-    <vue-progress-bar />
-  </div>
+  <v-app>
+    <v-main>
+      <div class="default-layout">
+        <overlay v-if="overlayActive" />
+        <loader />
+        <div id="viewport" class="w-100 relative">
+          <main-header />
+          <async-sidebar
+            :async-component="SearchPanel"
+            :is-open="isSearchPanelOpen"
+            @close="$store.commit('ui/setSearchpanel')"
+          />
+          <async-sidebar
+            :async-component="Microcart"
+            :is-open="isMicrocartOpen"
+            @close="$store.commit('ui/setMicrocart')"
+          />
+          <async-sidebar
+            :async-component="SidebarMenu"
+            :is-open="isSidebarOpen"
+            @close="$store.commit('ui/setSidebar')"
+            direction="left"
+          />
+          <async-sidebar
+            :async-component="Wishlist"
+            :is-open="isWishlistOpen"
+            @close="$store.commit('ui/setWishlist')"
+          />
+          <slot />
+          <main-footer />
+          <notification />
+          <sign-up />
+          <cookie-notification />
+          <offline-badge />
+          <order-confirmation :orders-data="ordersData" v-if="loadOrderConfirmation" />
+        </div>
+        <vue-progress-bar />
+      </div>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import AsyncSidebar from 'theme/components/theme/blocks/AsyncSidebar/AsyncSidebar.vue'
-import MainHeader from 'theme/components/core/blocks/Header/Header.vue'
+import MainHeader from 'theme/components/core/blocks/Header/HeaderTlbs.vue'
 import MainFooter from 'theme/components/core/blocks/Footer/Footer.vue'
 import Overlay from 'theme/components/core/Overlay.vue'
 import Loader from 'theme/components/core/Loader.vue'

@@ -17,7 +17,9 @@ export default {
     { rel: 'icon', type: 'image/png', href: '/assets/favicon-32x32.png?v=2', sizes: '32x32' },
     { rel: 'icon', type: 'image/png', href: '/assets/favicon-16x16.png?v=2', sizes: '16x16' },
     { rel: 'manifest', href: '/assets/manifest.json' },
-    { rel: 'stylesheet', as: 'style', href: 'https://fonts.googleapis.com/css?family=Playfair+Display:400,700|Roboto:400,700|Material+Icons&display=swap' },
+    { rel: 'stylesheet', as: 'style', href: 'https://fonts.googleapis.com/css?family=Playfair+Display:400,700|Roboto:400,700|Material+Icons|Material+Icons+Outlined&display=swap' },
+    { rel: 'stylesheet', as: 'style', href: 'https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css' },
+    { rel: 'stylesheet', as: 'style', href: '/assets/MyFontsWebfontsKit.css' },
     { rel: 'preconnect', href: 'https://fonts.gstatic.com/', crossorigin: 'anonymous' }
   ],
   script: [
@@ -29,6 +31,6 @@ export default {
     }
   ],
   noscript: [
-    { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Playfair+Display:400,700|Roboto:400,700|Material+Icons&display=swap' }
+    { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Playfair+Display:400,700|Roboto:400,700|Material+Icons|Material+Icons+Outlined&display=swap' }
   ]
 }

@@ -1,21 +1,12 @@
 <template>
-  <div
-    class="product-listing m0 center-xs start-md"
-    :class="parentStyle"
-  >
-    <div
-      v-for="(product) in products"
-      :key="product.id"
-      :class="style"
-    >
-      <product-tile v-if="type=='grid'" :product="product" />
-      <product-tile-list v-else :product="product" />
-    </div>
-  </div>
+  <v-row class="lastseen flex-wrap">
+    <product-tile v-if="type=='grid'" v-for="product in products" :product="product" :key="product.id" :description="description" />
+    <product-tile-list v-else :product="product" />
+  </v-row>
 </template>
 
 <script>
-import ProductTile from 'theme/components/core/ProductTile'
+import ProductTile from 'theme/components/core/ProductTileTlbs'
 import ProductTileList from 'theme/components/core/ProductTileList'
 let lastHero = 0
 export default {
@@ -36,6 +27,10 @@ export default {
     columns: {
       type: [Number, String],
       required: true
+    },
+    description: {
+      type: Boolean,
+      default: true
     }
   },
   computed: {

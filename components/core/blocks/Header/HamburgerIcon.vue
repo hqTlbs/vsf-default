@@ -1,13 +1,9 @@
 <template>
-  <button
-    type="button"
-    class="bg-cl-transparent brdr-none inline-flex"
+  <v-app-bar-nav-icon
     @click="openSidebarMenu"
-    :aria-label="$t('Open menu')"
     data-testid="menuButton"
-  >
-    <i class="material-icons">dehaze</i>
-  </button>
+    :aria-label="$t('Open menu')"
+  ></v-app-bar-nav-icon>
 </template>
 
 <script>

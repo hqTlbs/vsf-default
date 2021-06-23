@@ -1,20 +1,12 @@
 <template>
-  <button
-    @click="isOnCompare ? removeProduct(product) : addProduct(product)"
-    class="p0 inline-flex middle-xs bg-cl-transparent brdr-none action h5 pointer cl-secondary"
-    type="button"
-    data-testid="addToCompare"
-  >
-    <slot>
-      <i class="pr5 material-icons">compare</i>
-      <template v-if="!isOnCompare">
-        {{ $t('Add to compare') }}
-      </template>
-      <template v-else>
-        {{ $t('Remove from compare') }}
-      </template>
-    </slot>
-  </button>
+  <v-btn tile elevation="0" @click="isOnCompare ? removeProduct(product) : addProduct(product)" data-testid="addToCompare">
+    <v-icon v-if="!isOnCompare" :title="$t('Add to compare')" class="outlined">
+      compare
+    </v-icon>
+    <v-icon v-else :title="$t('Remove from compare')" class="outlined">
+      compare
+    </v-icon>
+  </v-btn>
 </template>
 
 <script>

@@ -41,21 +41,23 @@
       <div v-if="manufacturers.length > 0" class="categories">
         <manufacturer-panel :categories="manufacturers" v-model="selectedManufacturerIds" />
       </div>
-      <div class="product-listing row">
-        <product-tile
-          v-for="product in visibleProducts"
-          :key="product.id"
-          :product="product"
-          @click.native="closeSearchpanel"
-        />
-        <transition name="fade">
-          <div
-            v-if="getNoResultsMessage"
-            class="no-results relative center-xs h4 col-md-12"
-          >
-            {{ $t(getNoResultsMessage) }}
-          </div>
-        </transition>
+      <div class="products__gridview">
+        <v-row class="flex-wrap">
+          <product-tile
+            v-for="product in visibleProducts"
+            :key="product.id"
+            :product="product"
+            @click.native="closeSearchpanel"
+          />
+          <transition name="fade">
+            <div
+              v-if="getNoResultsMessage"
+              class="no-results relative center-xs h4 col-md-12"
+            >
+              {{ $t(getNoResultsMessage) }}
+            </div>
+          </transition>
+        </v-row>
       </div>
       <div
         v-show="OnlineOnly"
@@ -83,7 +85,7 @@
 
 <script>
 import SearchPanel from '@vue-storefront/core/compatibility/components/blocks/SearchPanel/SearchPanel'
-import ProductTile from 'theme/components/core/ProductTile'
+import ProductTile from 'theme/components/core/ProductTileTlbs'
 import VueOfflineMixin from 'vue-offline/mixin'
 import CategoryPanel from 'theme/components/core/blocks/Category/CategoryPanel'
 import ManufacturerPanel from 'theme/components/core/blocks/Category/ManufacturerPanel'

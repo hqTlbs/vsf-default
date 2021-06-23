@@ -1,19 +1,12 @@
 <template>
-  <div class="mb35">
-    <div class="row mb15">
-      <div class="col-xs-12 col-sm-6">
-        <h3 class="m0 mb5">
-          {{ $t('My Recently viewed products') }}
-        </h3>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12" v-if="items && items.length > 0">
-        <product-listing columns="6" :products="items" />
-      </div>
-      <div class="col-xs-12 h4" v-else>
-        <p>{{ $t('No products yet') }}</p>
-      </div>
+  <div class="contentblock">
+    <h2>{{ $t('My Recently viewed products') }}</h2>
+    <!--wird ab hier mit List/Grid Ansicht ersetzt  toolbar:false infotext:false filter:false-->
+    <div class="products__gridview">
+        <product-listing columns="6" :products="items" :description="false" v-if="items && items.length > 0" />
+      <v-row class="flex-wrap h4" v-else>
+        {{ $t('No products yet') }}
+      </v-row>
     </div>
   </div>
 </template>

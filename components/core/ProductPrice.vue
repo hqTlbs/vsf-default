@@ -1,27 +1,18 @@
 <template>
-  <div class="mb40 price sans-serif">
-    <div
-      class="h3 cl-secondary"
-      v-if="initialPrice.special && price.default && price.original"
-    >
-      <span
-        class="h2 cl-mine-shaft weight-700"
-      >{{ price.special | price(storeView) }}</span>&nbsp;
-      <span
-        class="price-original h3"
-      >{{ price.original | price(storeView) }}</span>
-    </div>
-    <div
-      class="h2 cl-mine-shaft weight-700"
-      v-if="!initialPrice.special && price.default"
-    >
-      {{ price.default | price(storeView) }}
-    </div>
-  </div>
+  <span>
+    <span v-if="individual">{{ price.special | price(storeView) }}</span>
+    <span v-else>{{ price.original | price(storeView) }}</span>
+  </span>
 </template>
 <script>
-import { getCustomOptionValues, getCustomOptionPriceDelta } from '@vue-storefront/core/modules/catalog/helpers/customOption'
-import { getBundleOptionsValues, getBundleOptionPrice } from '@vue-storefront/core/modules/catalog/helpers/bundleOptions'
+import {
+  getCustomOptionValues,
+  getCustomOptionPriceDelta
+} from '@vue-storefront/core/modules/catalog/helpers/customOption'
+import {
+  getBundleOptionsValues,
+  getBundleOptionPrice
+} from '@vue-storefront/core/modules/catalog/helpers/bundleOptions'
 import get from 'lodash-es/get'
 import { currentStoreView } from '@vue-storefront/core/lib/multistore'
 
@@ -35,6 +26,10 @@ export default {
     customOptions: {
       type: Object,
       default: () => ({})
+    },
+    individual: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -92,6 +87,7 @@ export default {
 <style lang="scss" scoped>
 @import '~theme/css/variables/colors';
 @import '~theme/css/helpers/functions/color';
+
 $color-primary: color(primary);
 .price-original {
   text-decoration: line-through;
