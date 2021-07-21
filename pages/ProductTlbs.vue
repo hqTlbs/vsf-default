@@ -29,11 +29,11 @@
           <!-- imagecol-->
           <v-col sm="12" md="4" lg="5" class="imagecol">
             <div class="imagecol__mainimage d-flex align-center justify-center">
-              <v-img contain :src="getImage" class="productimage"/>
+              <v-img contain :src="getImage" class="productimage" />
             </div>
             <template v-for="item in variants[chosenvariant].subimages">
               <div class="imagecol__subimage d-flex align-center justify-center">
-                <v-img contain :src="variants[chosenvariant].image" class="productimage"/>
+                <v-img contain :src="variants[chosenvariant].image" class="productimage" />
               </div>
             </template>
           </v-col>
@@ -214,9 +214,9 @@
                 </div>
               </v-card-text>
               <v-card-actions class="pricecard__actions px-8">
-                <AddToWishlist :product="getCurrentProduct" />
-                <AddToCompare :product="getCurrentProduct" />
-                <v-btn tile elevation="0">
+                <AddToWishlist :product="getCurrentProduct" :icon="false" />
+                <AddToCompare :product="getCurrentProduct" :icon="false" />
+                <v-btn>
                   <v-icon title="Diesen Artikel weiterempfehlen" class="outlined">
                     share
                   </v-icon>

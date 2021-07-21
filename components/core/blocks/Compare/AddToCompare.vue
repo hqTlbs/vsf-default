@@ -1,9 +1,9 @@
 <template>
-  <v-btn tile elevation="0" @click="isOnCompare ? removeProduct(product) : addProduct(product)" data-testid="addToCompare">
-    <v-icon v-if="!isOnCompare" :title="$t('Add to compare')" class="outlined">
+  <v-btn :icon="icon" @click="isOnCompare ? removeProduct(product) : addProduct(product)" data-testid="addToCompare">
+    <v-icon v-if="!isOnCompare" :title="$t('Add to compare')">
       compare
     </v-icon>
-    <v-icon v-else :title="$t('Remove from compare')" class="outlined">
+    <v-icon v-else :title="$t('Remove from compare')">
       compare
     </v-icon>
   </v-btn>
@@ -22,6 +22,10 @@ export default {
     product: {
       required: true,
       type: Object
+    },
+    icon: {
+      type: Boolean,
+      default: true
     }
   },
   methods: {

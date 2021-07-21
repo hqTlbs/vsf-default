@@ -1,6 +1,6 @@
 <template>
-  <v-col xl="2" lg="3" md="4" sm="6" class="d-flex flex-column pr-0 pb-5 flex-grow-1 flex-shrink-0 justify-center products__gridview__item">
-    <v-card tile elevation=0 outlined class="mb-1 flex-grow-1 flex-shrink-1">
+  <v-row class="product__listview__item">
+    <v-col xs="1" sm="2" class="flex-grow-0 flex-shrink-0">
       <router-link
         class="block no-underline product-link"
         :to="productLink"
@@ -14,52 +14,44 @@
           data-testid="productImage"
         />
       </router-link>
+      <AddToWishlist :product="product" :icon="true" />
+      <AddToCompare :product="product" :icon="true" />
+      <v-btn icon>
+        <v-icon title="Diesen Artikel weiterempfehlen">
+          mdi-share
+        </v-icon>
+      </v-btn>
+    </v-col>
+    <v-col sm="3" xs="3" class="flex-grow-1 flex-shrink-0">
+      <div class="manufacturer">{{ product.manufacturer_name | htmlDecode }} </div>
       <div class="new" v-if="product.new==1">Neu</div>
       <div class="sale" v-if="product.sale==1">%</div>
-      <div class="manufacturer"> {{ product.manufacturer_name | htmlDecode }}</div>
-      <v-card-title class="productname">
+      <div class="productname">
         <router-link
-          class="block no-underline product-link"
-          :to="productLink"
-          data-testid="productLink"
-        >
+        class="block no-underline product-link"
+        :to="productLink"
+        data-testid="productLink"
+      >
           {{ product.name | htmlDecode }}
         </router-link>
-      </v-card-title>
-      <v-divider class="mx-4"></v-divider>
-      <v-card-text>
-        <h4>Listpreis: {{ product.price_incl_tax | price(storeView) }}</h4>
-        <span class="heklabel">Ihr HEK:</span>
-        <span class="price hek">
-            {{ product.original_price_incl_tax | price(storeView) }}
-        </span>
-        <div class="sku mt-2">Art. Nr: {{ product.sku }}</div>
-        <div class="adnnr">ADN. Nr: {{ product.id }}</div>
-      </v-card-text>
-      <v-card-text class="shorttext fill-height" v-if="product.description">{{ product.description }}</v-card-text>
-      <v-card-text>
-        <v-btn depressed block tile class="inbasket" dark v-if="product.isSimpleOrConfigurable">
-          <v-icon left dark tile>shopping_cart</v-icon>
-          <span>In den Warenkorb</span>
-        </v-btn>
-        <v-btn depressed block tile class="inbasket" :href="productLink" dark v-else>
-          <v-icon left dark>settings</v-icon>
-          <span>Details</span>
-        </v-btn>
-      </v-card-text>
-      <v-divider class="mx-4"></v-divider>
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <AddToWishlist :product="product" :icon="true" />
-        <AddToCompare :product="product" :icon="true" />
-        <v-btn icon>
-          <v-icon title="Diesen Artikel weiterempfehlen">
-            mdi-share
-          </v-icon>
-        </v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-col>
+      </div>
+      <div class="sku float-left"> Art. Nr: {{ product.sku }} - </div>
+      <div class="adnnr"> ADN Nr: {{ product.id }} </div>
+    </v-col>
+    <v-col class="d-none d-sm-flex shorttext"> {{ product.description }} </v-col>
+    <v-col xs="3" md="3">
+      <div class="listprice"> Listpreis: {{ product.price_incl_tax | price(storeView) }}</div>
+      <div><span class="heklabel">Ihr HEK:</span> <span class="price hek"> {{ product.original_price_incl_tax | price(storeView) }}</span></div>
+      <v-btn depressed block tile class="inbasket" dark v-if="product.isSimpleOrConfigurable">
+        <v-icon left dark tile>shopping_cart</v-icon>
+        <span>In den Warenkorb</span>
+      </v-btn>
+      <v-btn depressed block tile class="inbasket" :href="productLink" dark v-else>
+        <v-icon left dark>settings</v-icon>
+        <span>Details</span>
+      </v-btn>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -85,29 +77,9 @@ export default {
       type: Boolean,
       default: true
     },
-    description: {
-      type: Boolean,
-      default: true
-    },
     onlyImage: {
       type: Boolean,
       default: false
-    },
-    xl: {
-      type: String,
-      default: '4'
-    },
-    lg: {
-      type: String,
-      default: '4'
-    },
-    md: {
-      type: String,
-      default: '6'
-    },
-    sm: {
-      type: String,
-      default: '6'
     }
   },
   computed: {
@@ -141,8 +113,8 @@ export default {
       ) {
         const skus = [this.product.sku]
         for (const confChild of this.product.configurable_children) {
-          const cachedproduct = rootStore.state.stock.cache[confChild.id]
-          if (typeof cachedproduct === 'undefined' || cachedproduct === null) {
+          const cachedItem = rootStore.state.stock.cache[confChild.id]
+          if (typeof cachedItem === 'undefined' || cachedItem === null) {
             skus.push(confChild.sku)
           }
         }
@@ -176,7 +148,6 @@ $color-white: color(white);
   @media (max-width: 767px) {
     padding-bottom: 10px;
   }
-
   &__icons {
     position: absolute;
     top: 0;
@@ -186,7 +157,6 @@ $color-white: color(white);
     padding-right: 20px;
     padding-top: 10px;
   }
-
   &__icon {
     padding-top: 10px;
     opacity: 0;
@@ -195,12 +165,10 @@ $color-white: color(white);
     @media (max-width: 767px) {
       opacity: 1;
     }
-
     &--active {
       opacity: 1;
     }
   }
-
   &:hover {
     .product__icon {
       opacity: 1;
@@ -218,7 +186,7 @@ $color-white: color(white);
   left: 0;
   display: flex;
   justify-content: center;
-  align-products: center;
+  align-items: center;
   width: 40px;
   height: 40px;
   background-color: $border-secondary;
@@ -246,7 +214,6 @@ $color-white: color(white);
         opacity: 1;
         transform: scale(1.1);
       }
-
       &.sale::after,
       &.new::after {
         opacity: 0.8;
@@ -260,7 +227,6 @@ $color-white: color(white);
       content: 'Sale';
     }
   }
-
   &.new {
     &::after {
       @extend %label;

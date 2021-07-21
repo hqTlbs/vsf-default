@@ -1,11 +1,10 @@
 <template>
-  <v-btn tile elevation="0" @click="isOnWishlist ? removeProductFromWhishList(product) : addProductToWhishlist(product)"
+  <v-btn :icon="icon" @click="isOnWishlist ? removeProductFromWhishList(product) : addProductToWhishlist(product)"
          data-testid="addToWishlist"
   >
     <span v-if="!isOnWishlist">
       <v-icon
         :title="$t('Add to favorite')"
-        class="outlined"
       >
         favorite_border
       </v-icon>
@@ -13,7 +12,6 @@
     <span v-else>
       <v-icon
         :title="$t('Remove')"
-        class="outlined"
       >
         favorite_border
       </v-icon>
@@ -30,6 +28,12 @@ import { htmlDecode } from '@vue-storefront/core/lib/store/filters'
 
 export default {
   mixins: [IsOnWishlist, AddToWishlist, RemoveFromWishlist],
+  props: {
+    icon: {
+      type: Boolean,
+      default: true
+    }
+  },
   computed: {
     favoriteIcon () {
       return this.isOnWishlist ? 'favorite' : 'favorite_border'

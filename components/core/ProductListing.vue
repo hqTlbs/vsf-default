@@ -1,13 +1,13 @@
 <template>
-  <v-row class="lastseen flex-wrap">
-    <product-tile v-if="type=='grid'" v-for="product in products" :product="product" :key="product.id" :description="description" :xl="xl" :lg="lg" :md="md" :sm="sm" />
+  <v-row class="flex-wrap">
+    <product-tile class="products__gridview" v-if="view==0" v-for="product in products" :product="product" :key="product.id" :description="description" :xl="xl" :lg="lg" :md="md" :sm="sm" />
     <product-tile-list v-else :product="product" />
   </v-row>
 </template>
 
 <script>
 import ProductTile from 'theme/components/core/ProductTileTlbs'
-import ProductTileList from 'theme/components/core/ProductTileList'
+import ProductTileList from 'theme/components/core/ProductTileListTlbs'
 let lastHero = 0
 export default {
   name: 'ProductListing',
@@ -20,9 +20,9 @@ export default {
       type: null,
       required: true
     },
-    type: {
-      type: String,
-      default: 'grid'
+    view: {
+      type: Number,
+      default: 0
     },
     columns: {
       type: [Number, String],

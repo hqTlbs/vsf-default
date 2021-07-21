@@ -2,7 +2,7 @@ const Home = () => import(/* webpackChunkName: "vsf-home" */ 'theme/pages/Home.v
 const PageNotFound = () => import(/* webpackChunkName: "vsf-not-found" */ 'theme/pages/PageNotFound.vue')
 const ErrorPage = () => import(/* webpackChunkName: "vsf-error" */ 'theme/pages/Error.vue')
 const Product = () => import(/* webpackChunkName: "vsf-product" */ 'theme/pages/ProductTlbs.vue')
-const Category = () => import(/* webpackChunkName: "vsf-category" */ 'theme/pages/Category.vue')
+const Category = () => import(/* webpackChunkName: "vsf-category" */ 'theme/pages/CategoryTlbs.vue')
 const CmsPage = () => import(/* webpackChunkName: "vsf-cms" */ 'theme/pages/CmsPage.vue')
 const Checkout = () => import(/* webpackChunkName: "vsf-checkout" */ 'theme/pages/Checkout.vue')
 const Compare = () => import(/* webpackChunkName: "vsf-compare" */ 'theme/pages/Compare.vue')

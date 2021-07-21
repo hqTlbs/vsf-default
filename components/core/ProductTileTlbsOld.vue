@@ -1,6 +1,8 @@
 <template>
-  <v-col xl="2" lg="3" md="4" sm="6" class="d-flex flex-column pr-0 pb-5 flex-grow-1 flex-shrink-0 justify-center products__gridview__item">
-    <v-card tile elevation=0 outlined class="mb-1 flex-grow-1 flex-shrink-1">
+  <v-col :xl="xl" :lg="lg" :md="md" :sm="sm"
+         class="d-flex flex-column pr-0 pb-5 flex-grow-1 flex-shrink-0 justify-center products__gridview__item"
+  >
+    <v-card tile elevation="0" outlined class="mb-1 flex-grow-1 flex-shrink-1">
       <router-link
         class="block no-underline product-link"
         :to="productLink"
@@ -36,26 +38,26 @@
         <div class="sku mt-2">Art. Nr: {{ product.sku }}</div>
         <div class="adnnr">ADN. Nr: {{ product.id }}</div>
       </v-card-text>
-      <v-card-text class="shorttext fill-height" v-if="product.description">{{ product.description }}</v-card-text>
+      <v-card-text class="shorttext fill-height" v-if="description">{{ product.description }}</v-card-text>
       <v-card-text>
-        <v-btn depressed block tile class="inbasket" dark v-if="product.isSimpleOrConfigurable">
+        <v-btn depressed block tile class="inbasket" dark v-if="product.configarticle==0">
           <v-icon left dark tile>shopping_cart</v-icon>
-          <span>In den Warenkorb</span>
-        </v-btn>
-        <v-btn depressed block tile class="inbasket" :href="productLink" dark v-else>
+          <span>In den Warenkorb</span></v-btn>
+        <v-btn depressed block tile class="inbasket" :href="product.detailurl" dark v-if="product.configarticle==1">
           <v-icon left dark>settings</v-icon>
-          <span>Details</span>
-        </v-btn>
+          <span>Details</span></v-btn>
       </v-card-text>
       <v-divider class="mx-4"></v-divider>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <AddToWishlist :product="product" :icon="true" />
-        <AddToCompare :product="product" :icon="true" />
         <v-btn icon>
-          <v-icon title="Diesen Artikel weiterempfehlen">
-            mdi-share
-          </v-icon>
+          <v-icon title="Auf die Favoritenliste">mdi-heart-outline</v-icon>
+        </v-btn>
+        <v-btn icon>
+          <v-icon title="Auf die Vergleichsliste">mdi-compare</v-icon>
+        </v-btn>
+        <v-btn icon>
+          <v-icon title="Diesen Artikel weiterempfehlen">mdi-share</v-icon>
         </v-btn>
       </v-card-actions>
     </v-card>
