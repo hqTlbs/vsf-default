@@ -1,8 +1,10 @@
 <template>
-  <v-row class="flex-wrap">
-    <product-tile class="products__gridview" v-if="view==0" v-for="product in products" :product="product" :key="product.id" :description="description" :xl="xl" :lg="lg" :md="md" :sm="sm" />
-    <product-tile-list v-else :product="product" />
+  <v-row v-if="view==0" class="flex-wrap">
+    <product-tile class="products__gridview" v-for="product in products" :product="product" :key="product.id" :description="description" :xl="xl" :lg="lg" :md="md" :sm="sm" />
   </v-row>
+  <div v-else>
+    <product-tile-list v-for="product in products" :product="product" :key="product.id" />
+  </div>
 </template>
 
 <script>
