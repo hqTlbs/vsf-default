@@ -1182,6 +1182,7 @@ h2 {
 
 .imagecol__mainimage {
   border: 1px solid #EAEBEC;
+  overflow: hidden;
   width: 100%;
   height: 100%;
   max-height: 500px;
