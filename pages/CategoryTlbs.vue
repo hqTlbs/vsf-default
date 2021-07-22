@@ -35,7 +35,11 @@
                 <v-icon>mdi-format-list-checkbox</v-icon>
               </v-btn>
             </v-btn-toggle>
-            <v-select v-model="sortBy" flat hide-details solo outlined dense :items="keys" item-text="title" :items-value="keys.value" label="Sortierung" class="producttoolbar__sort float-right" prepend-inner-icon="sort" />
+            <sort-by
+              :has-label="true"
+              @change="changeFilter"
+              :value="getCurrentSearchQuery.sort"
+            />
           </v-col>
         </v-row>
       </v-toolbar>

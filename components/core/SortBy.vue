@@ -1,19 +1,20 @@
 <template>
-  <div class="sort-by">
-    <select
-      name="sortby"
-      class="cl-secondary"
-      v-model="sortby"
-      @change="changeOrder"
-    >
-      <option selected="selected" disabled value="" v-if="!hasLabel">
-        {{ $t('Sort By') }}
-      </option>
-      <option v-for="variant in sortingVariants" :value="variant" :key="variant.id">
-        {{ $t(variant.label) }}
-      </option>
-    </select>
-  </div>
+  <v-select
+    v-model="sortby"
+    flat
+    hide-details
+    solo
+    outlined
+    dense
+    :items="sortingVariants"
+    item-text="label"
+    item-value="id"
+    label="Sortierung"
+    class="producttoolbar__sort float-right"
+    prepend-inner-icon="sort"
+    :return-object="true"
+    @change="changeOrder"
+  />
 </template>
 
 <script>
