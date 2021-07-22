@@ -1,5 +1,5 @@
 <template>
-  <v-col xl="2" lg="3" md="4" sm="6" class="d-flex flex-column pr-0 pb-5 flex-grow-1 flex-shrink-0 justify-center products__gridview__item">
+  <v-col :xl="getColXl" :lg="getColLg" md="4" sm="6" class="d-flex flex-column pr-0 pb-5 flex-grow-1 flex-shrink-0 justify-center products__gridview__item">
     <v-card tile elevation=0 outlined class="mb-1 flex-grow-1 flex-shrink-1">
       <router-link
         class="block no-underline product-link"
@@ -93,21 +93,9 @@ export default {
       type: Boolean,
       default: false
     },
-    xl: {
-      type: String,
-      default: '4'
-    },
-    lg: {
-      type: String,
-      default: '4'
-    },
-    md: {
-      type: String,
-      default: '6'
-    },
-    sm: {
-      type: String,
-      default: '6'
+    isSearchPanel: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -122,6 +110,20 @@ export default {
     },
     storeView () {
       return currentStoreView()
+    },
+    getColXl () {
+      if (this.isSearchPanel) {
+        return 4
+      } else {
+        return 2
+      }
+    },
+    getColLg () {
+      if (this.isSearchPanel) {
+        return 4
+      } else {
+        return 2
+      }
     }
   },
   methods: {
