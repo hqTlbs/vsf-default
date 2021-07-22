@@ -28,9 +28,17 @@
         <v-row>
           <!-- imagecol-->
           <v-col sm="12" md="4" lg="5" class="imagecol">
-            <div class="imagecol__mainimage d-flex align-center justify-center">
-              <v-img contain :src="getImage" class="productimage" />
+            <div class="image imagecol__mainimage">
+              <product-gallery
+                :offline="getOfflineImage"
+                :gallery="getProductGallery"
+                :configuration="getCurrentProductConfiguration"
+                :product="getCurrentProduct"
+              />
             </div>
+<!--            <div class="imagecol__mainimage d-flex align-center justify-center">-->
+<!--              <v-img contain :src="getImage" class="productimage" />-->
+<!--            </div>-->
             <template v-for="item in variants[chosenvariant].subimages">
               <div class="imagecol__subimage d-flex align-center justify-center">
                 <v-img contain :src="variants[chosenvariant].image" class="productimage" />

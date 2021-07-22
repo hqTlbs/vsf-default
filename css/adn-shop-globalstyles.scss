@@ -1,31 +1,77 @@
-  /*
-        CI-Konforme Farben
-            $cired: #EA152A;
-            $darkblue: #00125A;
-            $highlightblue1: #0F129D;
-            $highlightblue2: #0A57E3;
-            $highlightblue3: #0A57E3;
-            $lightblue: #00A5DF;
-            $darkgrey: #2E3640;
-            $grey: #ABAFB3;
-            $lightgrey: #EAEBEC;
+/* CI-Konforme Farben */
+$cired: #EA152A;
+$darkblue: #00125A;
+$highlightblue1: #0F129D;
+$highlightblue2: #0A57E3;
+$highlightblue3: #2A77E3;
+$lightblue: #00A5DF;
+$darkgrey: #2E3640;
+$grey: #ABAFB3;
+$lightgrey: #EAEBEC;
 
-        Vuetify-Standards
-            $primary: $highlightblue1;
-            $error: $cired;
+/* Vuetify-Standards*/
+$primary: $highlightblue1;
+$error: $cired;
 
-        Funktional
-            $lightborder: 1px solid $lightgrey;
-            $listbghover: $lightgrey;
-            $lightbackground: $lightgrey;
-            $directactioncolor: $highlightblue1;
-            $linkcolor: $highlightblue1;
-            $linkhovercolor: $cired;
-            $pricecolor: $cired;
-    */
+/* Funktionale Verteilung der Farben*/
+$standardtext: $darkgrey;
+$activepanelbg: $darkgrey;
+$lightborder: 1px solid $lightgrey;
+$listbghover: $lightgrey;
+$lightbackground: $lightgrey;
+$directactioncolor: $highlightblue2;
+$indirectactioncolor: $highlightblue1;
+$buttoniconcolor: $highlightblue1;
+$snackbarbackground: $highlightblue1;
+$newcolor: $highlightblue1;
+$linkcolor: $highlightblue1;
+$linkhovercolor: $cired;
+$pricecolor: $cired;
+$stripedtablehover: $highlightblue3;
+$fontcolorondarkbg: #ffffff;
+
+/* Schriftarten */
+$fontregular: "neueRadial-A-Regular", sans-serif;
+$fontbold: "neueRadial-A-Bold", sans-serif;
+
+/*Schriftgrößen*/
+/*viel text auf kleinem Raum*/
+$smallestsize: 12px;
+/*gut lesbar für Voransichten*/
+$normalsize: 14px;
+/*vuetify Standard*/
+$standard: 16px;
+/* Produkt und Preis, Eingabe der Artikelmenge*/
+$productandprice: 18px;
 
 
-    /*vuetify theme*/
+
+/*                                                     */
+/*     Globale Styles                                  */
+/*                                                     */
+/* Vuetify Theme Spezifisch                            */
+/* Eventuell über Themevariablen und eigenes Colorset  */
+
+/* Gefundene Vuetify Sass Variablen*/
+$border-radius-root: 0px;
+$body-font-family: $fontregular;
+$heading-font-family: $fontregular;
+/*$headings: (
+    'button': (
+        'font-family': $fontbold,
+    )
+);
+*/
+$material-light: (
+'text': (
+'primary': $standardtext,
+'link': $linkcolor,
+'link-hover': $linkhovercolor
+),
+'text-color': $standardtext,
+);
+
+/*vuetify theme*/
     body, .v-application {
         font-family: "neueRadial-A-Regular";
       }
