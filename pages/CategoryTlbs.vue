@@ -6,7 +6,7 @@
     <v-container>
       <!-- Series Head-->
       <h1 class="mb-5">
-        {{ getCurrentCategory.name }}
+        {{ getCurrentCategory.name }} <span class="text-subtitle-1">{{ $t('{count} items', { count: getCategoryProductsTotal }) }}</span>
       </h1>
       <!-- Series Head Ende-->
       <!-- Productlist Toolbar-->
