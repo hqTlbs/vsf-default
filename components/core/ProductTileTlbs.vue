@@ -122,7 +122,7 @@ export default {
       if (this.isSearchPanel) {
         return 4
       } else {
-        return 2
+        return 3
       }
     }
   },
