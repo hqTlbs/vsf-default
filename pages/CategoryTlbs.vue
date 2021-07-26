@@ -23,7 +23,19 @@
           </v-col>
           <v-col class="d-flex pl-0">
             <div class="float-left" v-if="showsearch">
-              <v-text-field flat label="Suchen in Ansicht" hide-details solo outlined dense v-model="search" prepend-inner-icon="search" />
+              <v-text-field
+                ref="search"
+                flat
+                label="Suchen in Ansicht"
+                hide-details
+                solo
+                outlined
+                dense
+                v-model="search"
+                prepend-inner-icon="search"
+                @input="makeSearch"
+                :autofocus="true"
+                type="search"/>
             </div>
           </v-col>
           <v-col cols="12" sm="6" md="4" align="right" class="pl-0 pr-0">
@@ -255,16 +267,6 @@ export default {
       categoriesfilter: [0],
       productvalues: [],
       possiblefilter: ['manufacturer', 'productseries', 'productrange'],
-      products: [
-        { productname: 'SOHO 250', manufacturer: 'SonicWall', sku: '3125456', adnnr: '672367867', listprice: '500,00 ', hek: '220,99', shorttext: 'Für Netzwerke im Bereich 1-10 User/Geräte 5x 1-GbE-RJ45 600 Mbps Firewall-Durchsatz 200 Mbps Threat-Protection-Durchsatz Integrierter IEEE 802.11n Access-Point', pictureurl: 'https://d3ik27cqx8s5ub.cloudfront.net/media/uploads/2020/06/SOHO_250_Front-1.png', new: 0, sale: 0, configarticle: 0, detailurl: 'ADN-Produktansicht.html' },
-        { productname: 'SOHO 250 Wireless', manufacturer: 'SonicWall', sku: '3125456', adnnr: '672367867', listprice: '500,00 ', hek: '200,00 ', shorttext: 'ür Netzwerke im Bereich 1-10 User/Geräte - 5x 1-GbE-RJ45 -00 Mbps Firewall-Durchsatz 200 Mbps Threat-Protection-DurchsatzIntegrierter IEEE 802.11n Access-Point', pictureurl: 'https://d3ik27cqx8s5ub.cloudfront.net/media/uploads/2020/10/TZ_Priority_TZ270W_Front.png', new: 0, sale: 0, configarticle: 0, detailurl: 'ADN-Produktansicht.html' },
-        { productname: 'TZ 350', manufacturer: 'SonicWall', sku: '3125456', adnnr: '672367867', listprice: '500,00 ', hek: '200,00 ', shorttext: 'Für Netzwerke im Bereich 1-10 User/Geräte 5x 1-GbE-RJ45 600 Mbps Firewall', pictureurl: 'https://d3ik27cqx8s5ub.cloudfront.net/media/uploads/2020/06/TZ350_Front-1.jpg', new: 0, sale: 0, configarticle: 0, detailurl: 'ADN-Produktansicht.html' },
-        { productname: 'TZ 350 Wireless', manufacturer: 'SonicWall', sku: '3125456', adnnr: '672367867', listprice: '500,00 ', hek: '200,00 ', shorttext: 'Für Netzwerke im Bereich 1-10 User/Geräte 5x 1-GbE-RJ45 600 Mbps Firewall-Durchsatz 200 Mbps Threat-Protection-Durchsatz Integrierter IEEE 802.11n Access-Point', pictureurl: 'https://d3ik27cqx8s5ub.cloudfront.net/media/uploads/2020/10/TZ_Priority_TZ370W_Front.png', new: 1, sale: 0, configarticle: 1, detailurl: 'ADN-Produktansicht.html' },
-        { productname: 'TZ 400', manufacturer: 'SonicWall', sku: '3125456', adnnr: '672367867', listprice: '500,00 ', hek: '220,99', shorttext: 'Für Netzwerke im Bereich 1-10 User/Geräte 5x 1-GbE-RJ45 600 Mbps Firewall-Durchsatz 200 Mbps Threat-Protection-Durchsatz Integrierter IEEE 802.11n Access-Point', pictureurl: 'https://d3ik27cqx8s5ub.cloudfront.net/media/uploads/2020/06/TZ400_Front-1.png', new: 0, sale: 0, configarticle: 0, detailurl: 'ADN-Produktansicht.html' },
-        { productname: 'TZ 400 Wireless', manufacturer: 'SonicWall', sku: '3125456', adnnr: '672367867', listprice: '500,00 ', hek: '200,00 ', shorttext: 'Für Netzwerke im Bereich 1-10 User/Geräte 5x 1-GbE-RJ45 600 Mbps Firewall-Durchsatz 200 Mbps Threat-Protection-Durchsatz Integrierter IEEE 802.11n Access-Point', pictureurl: 'https://d3ik27cqx8s5ub.cloudfront.net/media/uploads/2020/10/TZ_Priority_TZ370W_Front.png', new: 0, sale: 1, configarticle: 0, detailurl: 'ADN-Produktansicht.html' },
-        { productname: 'TZ 500', manufacturer: 'SonicWall', sku: '3125456', adnnr: '672367867', listprice: '500,00 ', hek: '200,00 ', shorttext: 'Für Netzwerke im Bereich 1-10 User/Geräte 5x 1-GbE-RJ45 600 Mbps Firewall-Durchsatz 200 Mbps Threat-Protection-Durchsatz Integrierter IEEE 802.11n Access-Point', pictureurl: 'https://d3ik27cqx8s5ub.cloudfront.net/media/uploads/2020/08/TZ570_Front-1080px-4.png', configarticle: 0, detailurl: 'ADN-Produktansicht.html' },
-        { productname: 'TZ 500 Wireless', manufacturer: 'SonicWall', sku: '3125456', adnnr: '672367867', listprice: '500,00 ', hek: '200,00 ', shorttext: 'Für Netzwerke im Bereich 1-10 User/Geräte 5x 1-GbE-RJ45 600 Mbps Firewall-Durchsatz 200 Mbps Threat-Protection-Durchsatz Integrierter IEEE 802.11n Access-Point', pictureurl: 'https://d3ik27cqx8s5ub.cloudfront.net/media/uploads/2020/10/TZ_Priority_TZ370W_Front.png', new: 0, sale: 1, configarticle: 1, detailurl: 'ADN-Produktansicht.html' }
-      ],
       parentcategories: [{ title: 'SonicWall', link: 'Sonicwall.html' }, { title: 'Firewalls', link: 'Firewalls.html' }, { title: 'SOHO - TZ Series', link: '' }],
       filter: [
         { filtername: 'Hersteller', active: true, mobileactive: false, id: '1', filtergroup: 'manufacturer', items: [{ id: '1', title: 'GFI' }, { id: '2', title: 'rackmount.it' }, { id: '3', title: 'SonicWall' }] },
@@ -309,12 +311,19 @@ export default {
       })
     }
   },
+  mounted () {
+    // add autofocus to search input field
+    this.$refs.search.focus()
+  },
   methods: {
     openFilters () {
       this.mobileFilters = true
     },
     closeFilters () {
       this.mobileFilters = false
+    },
+    async changeKeywordChange (keyword) {
+      this.$store.dispatch('category-next/changeKeywordSearch', keyword)
     },
     async changeFilter (filterVariant) {
       this.$store.dispatch('category-next/switchSearchFilters', [filterVariant])
@@ -354,6 +363,11 @@ export default {
     },
     deleteallfilter () {
       this.productvalues = []
+    },
+    async makeSearch () {
+      if (this.search.length >= 3) {
+        this.changeKeywordChange(this.search)
+      }
     }
   },
   metaInfo () {
