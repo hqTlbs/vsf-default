@@ -365,9 +365,7 @@ export default {
       this.productvalues = []
     },
     async makeSearch () {
-      if (this.search.length >= 3) {
-        this.changeKeywordChange(this.search)
-      }
+      this.changeKeywordChange(this.search)
     }
   },
   metaInfo () {

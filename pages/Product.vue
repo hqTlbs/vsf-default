@@ -299,6 +299,9 @@ export default {
       attributesByCode: 'attribute/attributeListByCode',
       getCurrentCustomOptions: 'product/getCurrentCustomOptions'
     }),
+    getProductImage () {
+      return 'https://shop.adn.de' + this.getCurrentProduct.image
+    },
     getOptionLabel () {
       return (option) => {
         const configName = option.attribute_code ? option.attribute_code : option.label.toLowerCase()

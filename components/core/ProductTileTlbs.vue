@@ -99,6 +99,9 @@ export default {
     }
   },
   computed: {
+    getProductImage () {
+      return 'https://shop.adn.de' + this.product.image
+    },
     thumbnailObj () {
       return {
         src: this.thumbnail,
