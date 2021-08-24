@@ -1,0 +1,36 @@
+@import "~theme/css/animations/transitions";
+
+
+/*                              */
+/*  Sidebar MainMenu            */
+/*                              */
+
+.mainmenu {
+  height: 100vh;
+  width: 350px;
+  overflow: hidden;
+
+  @media (max-width: 767px) {
+    width: 100vh;
+  }
+
+  &__container {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    height: calc(100% - 55px);
+  }
+
+  &__list {
+    transition: transform $duration-main $motion-main;
+  }
+
+  // sonst hover in grey?!?
+  a.underline:after, a:not(.no-underline):hover:after {
+    background-color: transparent;
+  }
+}
+
+.drawerheader {
+  background: #2E3640;
+}
+

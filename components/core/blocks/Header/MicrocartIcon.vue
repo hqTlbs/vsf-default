@@ -1,21 +1,30 @@
 <template>
-  <button
-    type="button"
-    class="relative bg-cl-transparent brdr-none inline-flex"
-    @click="openMicrocart"
-    data-testid="openMicrocart"
-    :aria-label="$t('Open microcart')"
-  >
-    <i class="material-icons">shopping_cart</i>
-    <span
-      class="minicart-count absolute flex center-xs middle-xs border-box py0 px2 h6 lh16 weight-700 cl-white bg-cl-silver"
-      v-cloak
-      v-show="totalQuantity"
-      data-testid="minicartCount"
-    >
-      {{ totalQuantity }}
-    </span>
-  </button>
+  <v-tooltip top>
+    <template v-slot:activator="{ on, attrs }">
+      <v-btn
+        icon
+        @click.stop="openMicrocart"
+        class="ma-0"
+        v-bind="attrs"
+        v-on="on"
+        data-testid="openMicrocart"
+        :aria-label="$t('Open microcart')"
+      >
+        <v-badge
+          overlap
+          clean
+          color="error"
+          bordered
+          :content="totalQuantity"
+          :value="totalQuantity"
+          data-testid="minicartCount"
+        >
+          <v-icon>shopping_cart</v-icon>
+        </v-badge>
+      </v-btn>
+    </template>
+    <span>Warenkorb</span>
+  </v-tooltip>
 </template>
 
 <script>
@@ -44,11 +53,11 @@ export default {
 </script>
 
 <style scoped>
-  .minicart-count {
-    top: 7px;
-    left: 50%;
-    min-width: 16px;
-    min-height: 16px;
-    border-radius: 10px;
-  }
+.minicart-count {
+  top: 7px;
+  left: 50%;
+  min-width: 16px;
+  min-height: 16px;
+  border-radius: 10px;
+}
 </style>

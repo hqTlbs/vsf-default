@@ -17,14 +17,6 @@
         </div>
         <!--Product Headbereich Ende-->
         <!-- 3erBlock Start-->
-<!--        <v-row>-->
-<!--          <product-gallery-->
-<!--            :offline="getOfflineImage"-->
-<!--            :gallery="getProductGallery"-->
-<!--            :configuration="getCurrentProductConfiguration"-->
-<!--            :product="getCurrentProduct"-->
-<!--          />-->
-<!--        </v-row>-->
         <v-row>
           <!-- imagecol-->
           <v-col sm="12" md="4" lg="5" class="imagecol">

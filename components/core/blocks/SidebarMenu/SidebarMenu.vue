@@ -190,9 +190,16 @@ export default {
       currentUser: state => state.user.current
     }),
     getSubmenu () {
+      console.log('getSubmenu')
+      console.log(this.submenu)
       return this.submenu
     },
     visibleCategories () {
+      console.log('visibleCategories')
+      console.log(this.categories)
+      console.log(this.categories.filter(category => {
+        return category.product_count > 0 || category.children_count > 0
+      }))
       return this.categories.filter(category => {
         return category.product_count > 0 || category.children_count > 0
       })

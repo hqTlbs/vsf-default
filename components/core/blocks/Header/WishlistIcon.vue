@@ -1,19 +1,30 @@
 <template>
-  <v-btn
-    icon
-    @click="toggleWishlistPanel"
-    data-testid="wishlist-icon"
-    :aria-label="$t('Open wishlist')"
-  >
-    <v-icon>star</v-icon>
-    <span
-      class="whishlist-count absolute flex center-xs middle-xs border-box py0 px2 h6 lh16 weight-700 cl-white bg-cl-silver"
-      v-cloak
-      v-show="getWishlistItemsCount"
-    >
-      {{ getWishlistItemsCount }}
-    </span>
-  </v-btn>
+  <v-tooltip top>
+    <template v-slot:activator="{ on, attrs }">
+      <v-btn
+        icon
+        @click.stop="toggleWishlistPanel"
+        class="ma-0"
+        v-bind="attrs"
+        v-on="on"
+        data-testid="wishlist-icon"
+        :aria-label="$t('Open wishlist')"
+      >
+        <v-badge
+          overlap
+          clean
+          color="error"
+          bordered
+          :content="getWishlistItemsCount"
+          :value="getWishlistItemsCount"
+        >
+          <v-icon>star</v-icon>
+        </v-badge>
+      </v-btn>
+
+    </template>
+    <span>Merkliste</span>
+  </v-tooltip>
 </template>
 
 <script>
@@ -25,11 +36,11 @@ export default {
 </script>
 
 <style scoped>
-  .whishlist-count {
-    top: 7px;
-    left: 50%;
-    min-width: 16px;
-    min-height: 16px;
-    border-radius: 10px;
-  }
+.whishlist-count {
+  top: 7px;
+  left: 50%;
+  min-width: 16px;
+  min-height: 16px;
+  border-radius: 10px;
+}
 </style>

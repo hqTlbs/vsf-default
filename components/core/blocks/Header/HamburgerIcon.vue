@@ -1,9 +1,14 @@
 <template>
-  <v-app-bar-nav-icon
-    @click="openSidebarMenu"
+  <v-btn
+    depressed
+    tile
+    @click.stop="openSidebarMenu"
     data-testid="menuButton"
-    :aria-label="$t('Open menu')"
-  ></v-app-bar-nav-icon>
+    class="mainmenubtn"
+  >
+    <v-icon class="material-icons-outlined mainmenubtn__icon">menu</v-icon>
+    <span class="d-none d-md-flex">Menu</span>
+  </v-btn>
 </template>
 
 <script>

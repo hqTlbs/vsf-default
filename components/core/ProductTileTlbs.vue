@@ -13,11 +13,14 @@
           :calc-ratio="false"
           data-testid="productImage"
         />
+<!--          <div class="product-cover__thumb align-center justify-center">-->
+<!--            <v-img contain :src="getProductImage" class="productimage" />-->
+<!--          </div>-->
       </router-link>
       <div class="new" v-if="product.new==1">Neu</div>
       <div class="sale" v-if="product.sale==1">%</div>
       <div class="manufacturer"> {{ product.manufacturer_name | htmlDecode }}</div>
-      <v-card-title class="productname">
+      <v-card-title class="productname breakword">
         <router-link
           class="block no-underline product-link"
           :to="productLink"

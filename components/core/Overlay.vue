@@ -13,7 +13,7 @@ export default {
       this.$store.commit('ui/setMicrocart', false)
       this.$store.commit('ui/setWishlist', false)
       this.$store.commit('ui/setSearchpanel', false)
-      // this.$store.commit('ui/setSidebar', false)
+      this.$store.commit('ui/setSidebar', false)
       this.$store.dispatch('themeCart/closeEditMode')
     }
   }

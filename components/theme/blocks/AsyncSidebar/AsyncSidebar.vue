@@ -51,7 +51,6 @@ export default {
           this.getComponent()
         }
         this.$nextTick(() => {
-          disableBodyScroll(this.$refs.sidebar)
         })
       } else {
         clearAllBodyScrollLocks()
