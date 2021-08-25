@@ -210,6 +210,7 @@
         <wishlist-icon class="p15 icon pointer" />
         <!-- WarenkorbButton -->
         <microcart-icon class="p15 icon pointer" />
+        <search-icon class="p15 icon pointer" />
       </v-container>
     </v-app-bar>
     <!--mobile search-->

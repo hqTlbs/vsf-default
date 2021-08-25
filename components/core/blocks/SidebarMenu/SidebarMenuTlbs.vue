@@ -48,29 +48,31 @@
               </v-list>
               <v-divider class="mb-5" />
             </template>
-            <h3 class="mainmenu__header">
-              Fokusthemen
-            </h3>
-            <div class="mainmenu__subheader">
-              <i>Produkte nach Themen Sortiert</i>
-            </div>
-            <v-list nav dense>
-              <v-list-item
-                dense
-                @click.stop="selectCategory(category.id)"
-                :aria-label="$t('Show subcategories')"
-                data-testid="categoryButton"
-                :key="category.slug"
-                v-for="category in visibleCategories"
-              >
-                <v-list-item-title class="mainmenu__linkitem">
-                  {{ category.name }}
-                </v-list-item-title>
-                <v-list-item-icon>
-                  <v-icon>chevron_right</v-icon>
-                </v-list-item-icon>
-              </v-list-item>
-            </v-list>
+            <template v-for="visibleCategory in visibleCategories">
+              <h3 class="mainmenu__header">
+                {{ visibleCategory.name }}
+              </h3>
+              <div class="mainmenu__subheader">
+                <i>{{ visibleCategory.subheader }}</i>
+              </div>
+              <v-list nav dense>
+                <v-list-item
+                  dense
+                  @click.stop="selectSubCategory(subCategory.id)"
+                  :aria-label="$t('Show subcategories')"
+                  data-testid="categoryButton"
+                  :key="subCategory.slug"
+                  v-for="subCategory in getSubCategories(visibleCategory.id)"
+                >
+                  <v-list-item-title class="mainmenu__linkitem">
+                    {{ subCategory.name }}
+                  </v-list-item-title>
+                  <v-list-item-icon>
+                    <v-icon>chevron_right</v-icon>
+                  </v-list-item-icon>
+                </v-list-item>
+              </v-list>
+            </template>
           </v-window-item>
           <v-window-item :value="2">
             <v-list nav dense class="pa-0 ma-0">
@@ -82,25 +84,22 @@
               </v-list-item>
             </v-list>
             <v-divider class="mb-5"></v-divider>
-            <template v-for="subCategory in getSubCategories()">
-              <h3 :key="subCategory.slug" class="mainmenu__header">
-                {{ subCategory.name }}
+            <template v-for="subSubCategory in getSubSubCategories()">
+              <h3 :key="subSubCategory.slug" class="mainmenu__header">
+                {{ subSubCategory.name }}
               </h3>
               <v-list nav dense>
                 <v-list-item
                   dense
-                  @click.stop="showProductsInCategory(subSubCategory)"
+                  @click.stop="showProductsInCategory(subSubSubCategory)"
                   :aria-label="$t('View all')"
                   data-testid="categoryButton"
-                  :key="subSubCategory.slug"
-                  v-for="subSubCategory in getSubSubCategories(subCategory.id)"
+                  :key="subSubSubCategory.slug"
+                  v-for="subSubSubCategory in getSubSubSubCategories(subSubCategory.id)"
                 >
                   <v-list-item-title class="mainmenu__linkitem">
-                    {{ subSubCategory.name }}
+                    {{ subSubSubCategory.name }}
                   </v-list-item-title>
-                  <v-list-item-icon>
-                    <v-icon>chevron_right</v-icon>
-                  </v-list-item-icon>
                 </v-list-item>
               </v-list>
               <v-divider class="mb-5"></v-divider>
@@ -311,21 +310,25 @@ export default {
     categoryLink (category) {
       return formatCategoryLink(category)
     },
-    selectCategory (catId) {
-      this.selectedCatId = catId
+    selectSubCategory (catId) {
+      this.selectedSubCatId = catId
       this.step++
     },
     showProductsInCategory (catId) {
       this.closeMenu()
       this.$router.push(this.categoryLink({ url_path: catId.url_path, slug: catId.slug }))
     },
-    getSubCategories () {
-      console.log('selectedCatId=' + this.selectedCatId)
-      console.log(this.getMenuCategories.filter(c => { return c.parent_id === this.selectedCatId }))
-      return this.getMenuCategories.filter(c => { return c.parent_id === this.selectedCatId })
+    getSubCategories (parentId) {
+      console.log(this.getMenuCategories.filter(c => { return c.parent_id === parentId }))
+      return this.getMenuCategories.filter(c => { return c.parent_id === parentId })
     },
-    getSubSubCategories (parentId) {
-      console.log('selectedCatId=' + this.selectedCatId)
+    getSubSubCategories () {
+      console.log('selectedSubCatId=' + this.selectedSubCatId)
+      console.log(this.getMenuCategories.filter(c => { return c.parent_id === this.selectedSubCatId }))
+      return this.getMenuCategories.filter(c => { return c.parent_id === this.selectedSubCatId })
+    },
+    getSubSubSubCategories (parentId) {
+      console.log('selectedSubCatId=' + this.selectedSubCatId)
       console.log(this.getMenuCategories.filter(c => { return c.parent_id === parentId }))
       return this.getMenuCategories.filter(c => { return c.parent_id === parentId })
     },
