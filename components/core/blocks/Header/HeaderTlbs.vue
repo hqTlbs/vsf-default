@@ -4,9 +4,12 @@
     <v-container>
       <v-row class="my-sm-0 my-md-4">
         <v-col cols="3" sm="2" md="2" xl="2" class="text-left pl-1 px-0 py-1 logocol">
-          <v-img src="https://www.department-q.com/a-rot.svg" max-height="46px" position="left center" alt="ADN" contain
-                 href="https://www.adn.de" class="ml-6 ml-md-0"
-          ></v-img>
+          <router-link
+            :to="localizedRoute('/')"
+          >
+            <v-img src="https://www.department-q.com/a-rot.svg" max-height="46px" position="left center" alt="ADN" contain href="https://www.adn.de" class="ml-6 ml-md-0"
+            ></v-img>
+          </router-link>
         </v-col>
         <v-col class="text-left pt-4 d-none d-sm-flex py-0">
           <template v-for="(item,i) in metamenu">
