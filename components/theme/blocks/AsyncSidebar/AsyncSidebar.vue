@@ -95,8 +95,8 @@ export default {
   right: 0;
   z-index: 4;
   height: 100%;
-  width: 800px;
-  min-width: 320px;
+  width: 600px;
+  min-width: 400px;
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;

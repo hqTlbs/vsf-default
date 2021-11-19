@@ -80,7 +80,6 @@
                   class="ma-0"
                   v-bind="attrs"
                   v-on="{ ...tooltip, ...menu }"
-
                 >
                   <v-icon id="langselec">language</v-icon>
                   {{ activelanguage }}
@@ -103,107 +102,15 @@
                 link
                 @click="switchlanguage(item.short)"
               >
-
                 <v-list-item-title class="headermenu__limkitem"><img height="15" :src="item.flag"><span class="pa-1"
                 >{{ item.name }} - {{ item.short.toUpperCase() }} - {{ item.currency }}</span></v-list-item-title>
               </v-list-item>
             </v-list>
           </v-card>
-
-
         </v-menu>
-
-
         <!-- Language-->
         <!--User-->
-        <v-menu offset-y left transition="scroll-y-transition" class="d-none d-sm-flex" :close-on-content-click="false"
-                v-model="usermenu" attach
-        >
-          <template v-slot:activator="{ on: menu, attrs }">
-            <v-tooltip top :disabled="disableheadertooltips">
-              <template v-slot:activator="{ on: tooltip }">
-                <v-btn
-                  icon
-                  v-bind="attrs"
-                  v-on="{ ...tooltip, ...menu }"
-                  class="mx-0 py-0"
-                >
-                  <v-icon>person</v-icon>
-                </v-btn>
-              </template>
-              <span v-if="userloggedin">Kundenmenu</span>
-              <span v-else>Login</span>
-            </v-tooltip>
-          </template>
-          <v-divider class="my-1"></v-divider>
-          <v-card tile v-if="userloggedin">
-            <v-list-item class="drawerheader" dark>
-              <v-list-item-content>
-                <v-list-item-title>Kundenmenu</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-            <v-divider class="mt-1 adndrawerheader"></v-divider>
-            <v-list nav>
-              <template v-for="(item,i) in customermenu">
-                <v-list-item dense :href="item.link">
-                  <v-list-item-title class="headermenu__limkitem">{{ item.title }}</v-list-item-title>
-                </v-list-item>
-              </template>
-              <v-divider class="my-2"></v-divider>
-              <v-list-item>
-                <v-btn color="primary" tile depressed @click="userloggedin = false">
-                  <v-icon>
-                    logout
-                  </v-icon>
-                  Abmelden
-                </v-btn>
-              </v-list-item>
-            </v-list>
-
-          </v-card>
-
-
-          <v-card tile v-else>
-            <v-list-item class="drawerheader" dark>
-              <v-list-item-content>
-                <v-list-item-title>Login</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-            <v-divider class="mt-1 adndrawerheader"></v-divider>
-            <v-card-text>
-
-              <v-row class="my-0">
-                <v-col>
-                  <v-text-field
-                    label="Email"
-                    prepend-inner-icon="account_circle"
-                    flat tile dense outlined
-                  ></v-text-field>
-                  <v-text-field
-                    label="Passwort"
-                    prepend-inner-icon="password"
-                    type="password"
-                    flat tile dense outlined
-                  ></v-text-field>
-                  <v-btn color="primary" tile depressed @click="userloggedin = true">
-                    <v-icon>
-                      login
-                    </v-icon>
-                    Anmelden
-                  </v-btn>
-                </v-col>
-              </v-row>
-              <v-divider class="my-2"></v-divider>
-              <p>
-                <a>Passwort vergessen?</a>
-              </p>
-
-              Sie sind noch kein Partner? <br><a href="partnerregistrierung" title="Partner der ADN werden">Hier können
-              Sie sich registrieren. </a>
-
-            </v-card-text>
-          </v-card>
-        </v-menu>
+        <account-icon />
         <!--User-->
 <!--        <compare-icon class="p15 icon hidden-xs pointer" />-->
         <!-- FavoritenlisteButton -->
@@ -247,7 +154,7 @@
 <script>
 import { mapGetters, mapState } from 'vuex'
 import CurrentPage from 'theme/mixins/currentPage'
-import AccountIcon from 'theme/components/core/blocks/Header/AccountIcon'
+import AccountIcon from 'theme/components/core/blocks/Header/AccountIconTlbs'
 import CompareIcon from 'theme/components/core/blocks/Header/CompareIcon'
 import HamburgerIcon from 'theme/components/core/blocks/Header/HamburgerIcon'
 import Logo from 'theme/components/core/Logo'
@@ -278,8 +185,7 @@ export default {
       lastScrollTop: 0,
       navbarHeight: 54,
       isVisible: false,
-      userloggedin: true,
-      disableheadertooltips: false,
+      disableheadertooltips: true,
       wishlist: [],
       basket: [],
       languages: [
@@ -300,11 +206,6 @@ export default {
           currency: 'EUR'
         },
 
-      ],
-      customermenu: [{ title: 'Reporting', link: 'reporting.html' }, {
-        title: 'Passwort ändern',
-        link: 'changepassword.html'
-      }, { title: 'Rechnungs- und Liefereinstellungen', link: 'deliverypreferences.html' }
       ],
       activelanguage: 'de',
       metaactive: 'Reseller Shop',

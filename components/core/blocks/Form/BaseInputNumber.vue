@@ -1,17 +1,31 @@
 <template>
   <div class="base-input-number">
-    <label class="base-input-number__label cl-primary flex" :for="getInputId">{{ name }}</label>
-    <input
-      :id="getInputId"
-      type="number"
-      :min="min"
-      :max="max"
-      :disabled="disabled"
-      class="m0 no-outline base-input-number__input brdr-cl-primary bg-cl-transparent h4"
-      :focus="autofocus"
+    <v-text-field
+      flat
+      tile
+      dense
+      outlined
+      :label="unit"
+      class="mb-1"
       v-model="inputValue"
+      type="number"
+      min="1"
       @blur="$emit('blur', $event.target.value)"
-    >
+      :disabled="disabled"
+      :id="getInputId"
+      :focus="autofocus"
+    />
+<!--    <input-->
+<!--      :id="getInputId"-->
+<!--      type="number"-->
+<!--      :min="min"-->
+<!--      :max="max"-->
+<!--      :disabled="disabled"-->
+<!--      class="m0 no-outline base-input-number__input brdr-cl-primary bg-cl-transparent h4"-->
+<!--      :focus="autofocus"-->
+<!--      v-model="inputValue"-->
+<!--      @blur="$emit('blur', $event.target.value)"-->
+<!--    >-->
     <ValidationMessages v-if="validations" :validations="validations" />
   </div>
 </template>
@@ -27,6 +41,11 @@ export default {
     value: {
       type: [String, Number],
       default: 0
+    },
+    unit: {
+      type: String,
+      required: false,
+      default: 'Stück'
     },
     name: {
       type: String,

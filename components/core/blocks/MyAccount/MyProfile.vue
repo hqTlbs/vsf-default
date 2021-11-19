@@ -303,49 +303,38 @@
     <div class="row fs16 mb35" v-else>
       <div class="col-xs-12 h4">
         <p>
-          {{ currentUser.firstname }} {{ currentUser.lastname }}
+          {{ currentUser.salutation }} {{ currentUser.firstname }} {{ currentUser.lastname }}
         </p>
         <p>
           {{ currentUser.email }}
         </p>
-        <base-checkbox
-          v-if="addCompany"
-          class="mb25"
-          id="addCompanyFilled"
-          v-model="addCompany"
-          disabled
-        >
-          {{ $t('I have a company and want to receive an invoice for every order') }}
-        </base-checkbox>
-        <template v-if="addCompany">
-          <p class="mb25">
-            {{ userCompany.company }}
-          </p>
-          <p class="mb25">
-            {{ userCompany.street }}
-            <span v-if="userCompany.house">
-              {{ userCompany.house }}
-            </span>
-          </p>
-          <p class="mb25">
-            {{ userCompany.city }} {{ userCompany.postcode }}
-          </p>
-          <p class="mb25">
-            <span v-if="userCompany.region">{{ userCompany.region }}, </span>
-            <span>
-              {{ getCountryName() }}
-            </span>
-          </p>
-          <p class="mb25" v-if="userCompany.taxId">
-            {{ userCompany.taxId }}
-          </p>
-          <div class="mb25">
-            {{ userCompany.phone }}
-            <tooltip v-if="userCompany.phone">
-              {{ $t('Phone number may be needed by carrier') }}
-            </tooltip>
-          </div>
-        </template>
+        <p class="mb25">
+          {{ userCompany.company }}
+        </p>
+        <p class="mb25">
+          {{ userCompany.street }}
+          <span v-if="userCompany.house">
+            {{ userCompany.house }}
+          </span>
+        </p>
+        <p class="mb25">
+          {{ userCompany.city }} {{ userCompany.postcode }}
+        </p>
+        <p class="mb25">
+          <span v-if="userCompany.region">{{ userCompany.region }}, </span>
+          <span>
+            {{ getCountryName() }}
+          </span>
+        </p>
+        <p class="mb25" v-if="userCompany.taxId">
+          {{ userCompany.taxId }}
+        </p>
+        <div class="mb25">
+          {{ userCompany.phone }}
+          <tooltip v-if="userCompany.phone">
+            {{ $t('Phone number may be needed by carrier') }}
+          </tooltip>
+        </div>
       </div>
     </div>
   </div>
@@ -382,6 +371,20 @@ export default {
     }
   },
   methods: {
+    getUserCompany () {
+      let user = this.$store.state.user.current
+      return {
+        company: user.company.billName1 || '',
+        street: user.company.billStreet || '',
+        house: user.company.billName1 || '',
+        city: user.company.billCity || '',
+        // region: user.company.billName1 || '',
+        country: user.company.billName1 || '',
+        postcode: user.company.billZipcode || '',
+        // taxId: user.company.billName1 || '',
+        phone: user.company.billPhone1 || ''
+      }
+    },
     checkValidation () {
       if (this.changePassword && this.addCompany) {
         return this.$v.$invalid
