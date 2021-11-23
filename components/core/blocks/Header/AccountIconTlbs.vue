@@ -115,7 +115,7 @@ export default {
       showMenu: false,
       disableheadertooltips: true,
       navigation: [
-        { title: this.$t('My orders'), link: '#' },
+        { title: this.$t('My orders'), link: '/my-account/orders' },
         { title: this.$t('Reporting'), link: '#' },
         { title: this.$t('Passwort ändern'), link: '#' },
         { title: this.$t('Rechnungs- und Liefereinstellungen'), link: '#' }

@@ -7,7 +7,8 @@ const CmsPage = () => import(/* webpackChunkName: "vsf-cms" */ 'theme/pages/CmsP
 // const Checkout = () => import(/* webpackChunkName: "vsf-checkout" */ 'theme/pages/Checkout.vue')
 const Checkout = () => import(/* webpackChunkName: "vsf-checkout" */ 'theme/pages/CheckoutTlbs.vue')
 const Compare = () => import(/* webpackChunkName: "vsf-compare" */ 'theme/pages/Compare.vue')
-const MyAccount = () => import(/* webpackChunkName: "vsf-my-account" */ 'theme/pages/MyAccount.vue')
+// const MyAccount = () => import(/* webpackChunkName: "vsf-my-account" */ 'theme/pages/MyAccount.vue')
+const MyAccount = () => import(/* webpackChunkName: "vsf-my-account" */ 'theme/pages/MyAccountTlbs.vue')
 const Static = () => import(/* webpackChunkName: "vsf-static" */ 'theme/pages/Static.vue')
 const ResetPassword = () => import(/* webpackChunkName: "vsf-reset-password" */ 'theme/pages/ResetPassword.vue');
 const Search = () => import(/* webpackChunkName: "vsf-search" */ 'theme/pages/Search.vue')
