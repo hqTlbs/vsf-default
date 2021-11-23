@@ -266,7 +266,7 @@ export default {
       categoriesfilter: [0],
       productvalues: [],
       possiblefilter: ['manufacturer', 'productseries', 'productrange'],
-      parentcategories: [{ title: 'SonicWall', link: 'Sonicwall.html' }, { title: 'Firewalls', link: 'Firewalls.html' }, { title: 'SOHO - TZ Series', link: '' }],
+      parentcategories: [{ title: 'SonicWall', link: '/1/111112/111113/SonicWall-493' }, { title: 'Firewalls', link: '/1/111111/Firewalls-90' }, { title: 'SOHO - TZ Series', link: '' }],
       filter: [
         { filtername: 'Hersteller', active: true, mobileactive: false, id: '1', filtergroup: 'manufacturer', items: [{ id: '1', title: 'GFI' }, { id: '2', title: 'rackmount.it' }, { id: '3', title: 'SonicWall' }] },
         { filtername: 'Produktserie', active: true, mobileactive: false, id: '2', filtergroup: 'productseries', items: [{ id: '21', title: 'Access Point (76)' }, { id: '22', title: 'AP-Serie (15)' }, { id: '23', title: 'Autodoc (10)' }, { id: '24', title: 'Capture Security Appliance (16)' }, { id: '24', title: 'Content Filter Client (2)' }, { id: '25', title: 'CSC / Remote Management (15)' }, { id: '25', title: 'Data Retention (54)' }, { id: '26', title: 'Dimension (4)' }, { id: '27', title: 'E-Class NSA Serie (5)' }, { id: '28', title: 'Firebox (321)' }, { id: '29', title: 'GFI Unlimited Hardware (30)' }, { id: '210', title: 'GMS / Remote Management (46)' }, { id: '211', title: 'Host Sensor (12)' }, { id: '212', title: 'M200 (2)' }, { id: '213', title: 'M270 (1)' }, { id: '214', title: 'M300 (2)' }, { id: '215', title: 'M370 (36)' }, { id: '216', title: 'M400 (2)' }, { id: '217', title: 'M440 (2)' }, { id: '218', title: 'M4600 (7)' }, { id: '219', title: 'M470 (36)' }, { id: '220', title: 'M500 (2)' }] },
