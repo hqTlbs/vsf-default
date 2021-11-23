@@ -183,7 +183,7 @@ export default {
   methods: {
     onSearchEnter () {
       this.$store.commit('ui/setSearchpanel', false)
-      this.$router.push('/search/all-1/?q=' + encodeURI(this.search))
+      this.$router.push({ path: '/fokusthemen-111111/', query: { q: encodeURI(this.search) } });
     }
   }
 }

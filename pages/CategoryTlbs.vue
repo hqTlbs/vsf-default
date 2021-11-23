@@ -244,12 +244,11 @@ export default {
       defaultColumn: 3,
       loadingProducts: false,
       loading: true,
-
+      search: this.$route.query.q,
       userloggedin: true,
       showinfotext: true,
       currency: '€',
       view: 0,
-      search: '',
       showfilter: false,
       showtoolbar: true,
       showtoolbarfilter: true,

@@ -1,13 +1,13 @@
 <template>
   <div width="100%" class="mainmenu">
     <v-list-item class="drawerheader drawermenuheader" dark>
-      <v-list-item-avatar>
+      <v-list-item-avatar v-if="currentUser">
         <v-icon left dark large>
           account_circle
         </v-icon>
       </v-list-item-avatar>
-      <v-list-item-content>
-        <v-list-item-title>Hallo Max Mustermann!</v-list-item-title>
+      <v-list-item-content v-if="currentUser">
+        <v-list-item-title>Hallo {{currentUser.firstname}} {{currentUser.lastname}}</v-list-item-title>
       </v-list-item-content>
       <v-list-item-action>
         <v-btn icon>

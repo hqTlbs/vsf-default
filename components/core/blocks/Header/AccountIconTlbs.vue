@@ -33,7 +33,12 @@
               {{ page.title }}
             </v-list-item-title>
           </v-list-item>
-          <v-divider class="my-2" />
+          <v-divider class="my-2"></v-divider>
+          <v-list-item two-line>
+            <v-icon large class="mr-2">account_circle</v-icon> {{currentUser.firstname}} {{currentUser.lastname}}
+            <br>{{currentUser.company.name1}}
+          </v-list-item>
+          <v-divider></v-divider>
           <v-list-item>
             <v-btn color="primary" tile depressed @click="logout">
               <v-icon>
@@ -110,11 +115,10 @@ export default {
       showMenu: false,
       disableheadertooltips: true,
       navigation: [
-        { title: this.$t('My profile'), link: '/my-account' },
-        { title: this.$t('My shipping details'), link: '/my-account/shipping-details' },
-        { title: this.$t('My newsletter'), link: '/my-account/newsletter' },
-        { title: this.$t('My orders'), link: '/my-account/orders' },
-        { title: this.$t('My Recently viewed products'), link: '/my-account/recently-viewed' }
+        { title: this.$t('My orders'), link: '#' },
+        { title: this.$t('Reporting'), link: '#' },
+        { title: this.$t('Passwort ändern'), link: '#' },
+        { title: this.$t('Rechnungs- und Liefereinstellungen'), link: '#' }
       ]
     }
   },
