@@ -258,7 +258,7 @@ export default {
         return category.product_count > 0 || category.children_count > 0
       }))
       return this.categories.filter(category => {
-        return category.product_count > 0 || category.children_count > 0
+        return (category.product_count > 0 || category.children_count > 0) && category.id === 111111
       })
     },
     isCurrentMenuShowed () {
