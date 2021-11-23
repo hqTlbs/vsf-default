@@ -38,9 +38,8 @@
         </span>
         <div class="sku mt-2">Art. Nr: {{ product.sku }}</div>
         <div class="adnnr">ADN. Nr: {{ product.id }}</div>
-        <div class="adnnr">EKD: {{ product.attr_ekd_pflicht }}</div>
       </v-card-text>
-      <v-card-text class="shorttext fill-height" v-if="product.description">{{ product.description }}</v-card-text>
+      <v-card-text class="shorttext fill-height" v-if="product.description">{{ product.description | htmlDecode}}</v-card-text>
       <v-card-text>
         <v-btn depressed block tile class="inbasket" dark v-if="product.isSimpleOrConfigurable">
           <v-icon left dark tile>shopping_cart</v-icon>

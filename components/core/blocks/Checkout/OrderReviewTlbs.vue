@@ -7,7 +7,7 @@
         </v-toolbar>
         <div class="ma-5" v-if="currentUser">
           <p class="mt-5">
-            <strong>{{ personalDetails.company.name1 }}</strong>
+            <strong v-if="personalDetails.company">{{ personalDetails.company.name1 }}</strong>
             <br> {{ personalDetails.salutation }} {{ personalDetails.firstName }} {{ personalDetails.lastName }}
             <br>
             <br> {{ personalDetails.street }}
@@ -146,6 +146,7 @@
           v-model="orderReview.terms"
           required
           :rules="[rules.required]"
+          @blur="$v.orderReview.terms.$touch()"
         >
           <template v-slot:label>
             <div id="acceptTermsCheckbox">
@@ -172,7 +173,7 @@
         </v-btn>
       </v-col>
       <v-col class="d-flex justify-end align-start">
-        <v-btn depressed tile class="directorder" dark @click="placeOrder">
+        <v-btn depressed tile class="directorder" dark :disabled="$v.orderReview.$invalid" @click="placeOrder">
           Zahlungspflichtig Bestellen
         </v-btn>
       </v-col>
@@ -235,6 +236,20 @@ export default {
   methods: {
     onSuccess () {
     },
+    onLoggedIn (receivedData) {
+      this.personalDetails = {
+        firstName: receivedData.firstname,
+        lastName: receivedData.lastname,
+        emailAddress: receivedData.email,
+        salutation: receivedData.salutation,
+        street: receivedData.street,
+        zip: receivedData.zip,
+        city: receivedData.city,
+        phone: receivedData.phone,
+        telefax: receivedData.telefax,
+        company: receivedData.company
+      }
+    },
     onFailure (result) {
       this.$store.dispatch('notification/spawnNotification', {
         type: 'error',
@@ -260,6 +275,14 @@ export default {
   .cartsummary-wrapper {
     @media (min-width: 767px) {
       display: none;
+    }
+  }
+
+  .theme--dark.v-btn.v-btn--disabled.v-btn--has-bg.directorder {
+    background-color: hsla(0,0%,100%,.62)!important;
+    color: hsla(0,0%,80%,.62)!important;
+    .v-icon {
+      color: hsla(0,0%,80%,.62)!important;
     }
   }
 </style>

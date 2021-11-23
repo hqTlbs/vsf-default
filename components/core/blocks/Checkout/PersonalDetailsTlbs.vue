@@ -8,7 +8,7 @@
         </v-toolbar>
         <div class="ma-5" v-if="currentUser">
           <p class="mt-5">
-            <strong>{{ personalDetails.company.name1 }}</strong>
+            <strong v-if="personalDetails.company">{{ personalDetails.company.name1 }}</strong>
             <br> {{ personalDetails.salutation }} {{ personalDetails.firstName }} {{ personalDetails.lastName }}
             <br>
             <br> {{ personalDetails.street }}

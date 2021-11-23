@@ -15,7 +15,6 @@
           </router-link>
         </strong>
         <div class="basket__sku">Herst.-Art-Nr.:{{ product.sku }} - ADN-Art.-Nr.{{ product.id }}</div>
-        <div class="basket__sku">EKD:{{ product.attr_ekd_pflicht }}</div>
         <div>
           <span v-if="product.qty < 999" class="success--text basket__addinfo"><v-icon small color="success">local_shipping</v-icon> Lieferbar. Lieferzeit: 3-5 Werktage</span>
           <span v-else class="error--text basket__addinfo"><v-icon small color="error">local_shipping</v-icon> ACHTUNG! Derzeit nur 1 Stück verfügbar</span>
