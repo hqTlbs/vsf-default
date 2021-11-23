@@ -19,6 +19,7 @@ export default {
     { rel: 'manifest', href: '/assets/manifest.json' },
     { rel: 'stylesheet', as: 'style', href: 'https://fonts.googleapis.com/css?family=Playfair+Display:400,700|Roboto:400,700|Material+Icons|Material+Icons+Outlined&display=swap' },
     { rel: 'stylesheet', as: 'style', href: 'https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css' },
+    { rel: 'stylesheet', as: 'style', href: 'https://use.fontawesome.com/releases/v5.0.13/css/all.css' },
     { rel: 'stylesheet', as: 'style', href: '/assets/MyFontsWebfontsKit.css' },
     { rel: 'preconnect', href: 'https://fonts.gstatic.com/', crossorigin: 'anonymous' }
   ],

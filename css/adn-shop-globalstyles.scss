@@ -39,6 +39,22 @@ $statusbartextcolor: $darkgrey;
 $checkoutheaderbackground: $lightgrey;
 $checkoutheaderfontcolor: #000;
 $checkoutnextstepbg: $lightgrey;
+$toolbardarkbg: $darkgrey;
+
+/*Mein Konto*/
+$ordertableheaderbg: $darkgrey;
+$positionstablebg: #ffffff;
+$posiitonscardbg: #ffffff;
+$orderexpandborder: 1px solid #000000;
+$orderexpandheadbg: $lightgrey;
+$orderexpandiconcolor: $highlightblue1;
+$positionoverlaybg: #ffffff;
+$positionoverlayfontcolor: #000000;
+
+/*footer*/
+$footernewsletterbg: $darkgrey;
+$footerlinkcolor: $darkgrey;
+$footerlinkhovercolor: $cired;
 
 /* Schriftarten */
 $fontregular: "neueRadial-A-Regular", sans-serif;
@@ -519,6 +535,32 @@ a.v-list-item:hover {
   bottom: 100px;
   right: 20px;
   z-index: 5;
+}
+
+.footer__newsletter {
+  background: $footernewsletterbg;
+
+  h3 {
+    font-size: 25px;
+    color: #fff;
+  }
+
+  .v-btn {
+    margin-top: -2px;
+  }
+}
+
+.footer__overview {
+  //background: no-repeat url("./assets/ADN-whitebg.png") right bottom;
+  background-size: 40%;
+}
+
+.v-application a.footer__overview__link {
+  color: $footerlinkcolor;
+
+  &:hover {
+    color: $footerlinkhovercolor;
+  }
 }
 
 /* End Global Styles*/
