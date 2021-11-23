@@ -314,6 +314,11 @@ export default {
     // add autofocus to search input field
     this.$refs.search.focus()
   },
+  watch: {
+    '$route.query.q': function (q) {
+      this.search = q
+    }
+  },
   methods: {
     openFilters () {
       this.mobileFilters = true
